@@ -8,7 +8,7 @@ import express from 'express'
 import cors from 'cors'
 
 // Imports the MongoDB connection function from db.js
-// import connectDB from './db.js'
+import connectDB from './config/db.js'
 
 // Imports authentication routes like register, login, and get current user
 // import authRoutes from './routes/authRoutes'
@@ -37,5 +37,5 @@ app.get('/test', (req, res) => {
 // Starts the server and connects to MongoDB
 app.listen(port, async () => {
     console.log(`Listening on port: ${port}`)
-    //   await connectDB()
+    await connectDB()
 })
