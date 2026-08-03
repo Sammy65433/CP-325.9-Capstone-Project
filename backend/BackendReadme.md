@@ -255,6 +255,9 @@ npm install --save-dev nodemon
 - create `.env`
 - create `db.js`
 
+
+## Step 2
+
 ```md
 ## Why I started with `index.js`
 
@@ -274,6 +277,87 @@ This file is important because it creates the foundation for the rest of the app
   - auth routes will not exist
   - MongoDB will not connect
   ```
+
+
+```md
+## Frontend and Backend Connection Test
+
+After setting up both the frontend and backend, I tested communication between them to make sure the full-stack foundation was working correctly.
+
+The backend was running on:
+
+```txt
+http://localhost:3000
+```
+
+The frontend was running on:
+
+```txt
+http://localhost:5173
+```
+
+```md
+## Frontend-Backend Connection
+
+I tested the connection between my React frontend and Express backend by creating a `/test` route in the backend and calling it from `App.jsx` using `fetch()` inside `useEffect()`.
+
+`Backend route:`
+```js
+app.get('/test', (req, res) => {
+  res.json({ message: 'Server is running' })
+})
+```
+
+`Frontend test:`
+```jsx
+import { useEffect } from 'react'
+
+export default function App() {
+  async function test() {
+    const response = await fetch('http://localhost:3000/test')
+    const data = await response.json()
+    console.log(data)
+  }
+
+  useEffect(() => {
+    test()
+  }, [])
+
+  return <div>Hello World</div>
+}
+```
+
+When I refreshed the frontend and opened the browser console, I saw:
+
+```js
+{ message: 'Server is running' }
+```
+
+```md
+**This confirmed that:**
+
+- the frontend could successfully send a request to the backend
+- the backend route was working correctly
+- CORS was configured properly
+- JSON data could be sent back from the server and read by the frontend
+
+This was an important milestone because it verified that the frontend and backend were connected before I moved on to authentication, database models, and CRUD functionality.
+```
+- [x] Done item
+- [ ] Not done item
+
+
+```md
+**Basic Setup steps:**
+- set up backend - [x]
+- connect database 
+- create model
+- create routes
+- create controller logic
+- add middleware
+- test
+- then build more features
+```
 
 `backend/.env`:
 ```env
