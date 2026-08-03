@@ -189,7 +189,7 @@ A full-stack MERN application that allows users to log sports training sessions,
   - create goal routes
   - test in Postman
   
-  ```bash
+```
 backend/
   controllers/
     authController.js
@@ -206,6 +206,7 @@ backend/
   package.json
 ```
 
+```
   - backend setup
 - database connection
 - user model
@@ -215,10 +216,11 @@ backend/
 - goal model + routes
 - test all endpoints
 - then frontend
+```
 
 `Install Depencies` 
 
-```bash
+```
 npm init -y
 npm install express cors mongoose dotenv bcryptjs jsonwebtoken
 npm install --save-dev nodemon
