@@ -343,20 +343,30 @@ When I refreshed the frontend and opened the browser console, I saw:
 
 This was an important milestone because it verified that the frontend and backend were connected before I moved on to authentication, database models, and CRUD functionality.
 ```
-- [x] Done item
-- [ ] Not done item
-
 
 ```md
 **Basic Setup steps:**
 - set up backend - [x]
-- connect database 
-- create model
-- create routes
-- create controller logic
-- add middleware
-- test
-- then build more features
+- setup up db.js n connect database - [x]
+- create model - [ ]
+- create routes - [ ]
+- create controller logic - [ ]
+- add middleware - [ ]
+
+****************************************************************************
+- **Test** 
+****************************************************************************
+- 1stTest[x] - the frontend could successfully send a request to the backend
+
+-  2ndtest[ ] 
+
+- 3rdtest[ ]
+
+- then build more features - [ ]
+
+****************************************************************************
+- [x] Done item
+- [ ] Not done item
 ```
 
 `backend/.env`:
@@ -374,6 +384,10 @@ JWT_SECRET=
 ```gitignore
 node_modules/
 .env
+```
+
+``md
+`process.exit(1)` stops the Node server when the database connection fails. This prevents the backend from running without a working MongoDB connection.
 ```
 
 

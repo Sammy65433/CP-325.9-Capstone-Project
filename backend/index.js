@@ -27,7 +27,7 @@ app.use(express.json())
 
 // Simple test route to confirm the backend server is running
 app.get('/test', (req, res) => {
-  res.json({ message: 'Server is running' })
+    res.json({ message: 'Server is running' })
 })
 
 // Mounts all auth routes under /api/auth
@@ -36,6 +36,6 @@ app.get('/test', (req, res) => {
 
 // Starts the server and connects to MongoDB
 app.listen(port, async () => {
-  console.log(`Listening on port: ${port}`)
-//   await connectDB()
+    console.log(`Listening on port: ${port}`)
+    //   await connectDB()
 })
