@@ -1,5 +1,5 @@
 
-
+// Import Mongoose to create a schema and model
 import mongoose from "mongoose";
 
 
@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema(
             required: true,
         },
 },
+
 {   
     // Automatically adds createdAt and updatedAt fields
     timestamps:true

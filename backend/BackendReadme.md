@@ -348,10 +348,10 @@ This was an important milestone because it verified that the frontend and backen
 **Basic Setup steps:**
 - set up backend - [x]
 - setup up db.js n connect database - [x]
-- create model - [ ]
-- create routes - [ ]
-- create controller logic - [ ]
-- add middleware - [ ]
+- create model - [x]
+- create routes - [x]
+- create controller logic - [x]
+- add middleware - [x]
 
 ****************************************************************************
 - **Test** 
@@ -386,9 +386,100 @@ node_modules/
 .env
 ```
 
+
+- setup up db.js n connect database - [x]
+
 ``md
 `process.exit(1)` stops the Node server when the database connection fails. This prevents the backend from running without a working MongoDB connection.
 ```
+
+
+```md
+- create model - [x]
+`backend/models/User.js`
+
+Why I chose this schema:
+
+- it matches the minimum data needed for user authentication
+- every user needs:
+  - a `username`
+  - an `email`
+  - a `password`
+- this keeps the model simple, clear, and appropriate for the first stage of the app
+```
+
+- **`username`**
+  - used as the user’s display name
+  - `type: String` because it is text
+  - `required: true` because every account should have a username
+  - `trim: true` removes extra spaces at the beginning or end
+
+- **`email`**
+  - used for login and identifying users
+  - `type: String` because email is stored as text
+  - `required: true` because a user must provide it
+  - `unique: true` helps prevent duplicate accounts with the same email
+  - `trim: true` removes accidental spaces
+  - `lowercase: true` keeps emails consistent, like converting `Sam@email.com` to `sam@email.com`
+
+- **`password`**
+  - used for authentication
+  - `type: String` because the hashed password is stored as text
+  - `required: true` because login cannot work without it
+  - I store the **hashed password**, not the plain password, for security
+
+`timestamps: true`:
+- automatically adds:
+  - `createdAt`
+  - `updatedAt`
+- this is useful for tracking when a user account was created or updated
+- it makes the data more informative
+
+So the flow is:
+- `User.js` = what a user looks like
+- `authController.js` = what happens when someone registers/logs in
+- `authRoutes.js` = URL paths like `/register`, `/login`, `/me`
+- `authMiddleware.js` = checks if user is authenticated
+
+- `routes` define the endpoint
+- `controller` holds the logic
+- `model` defines the data
+- `middleware` protects private routes
+
+ ## Step 3
+ - A. create controller logic - [x]
+ - B. create routes - [x]
+ - C. add middleware - [x]
+
+
+ Best next steps:
+1. `authController.js`
+2. `authRoutes.js`
+3. `authMiddleware.js`
+4. connect routes in `index.js`
+5. test in Postman
+6. then build frontend login/register forms
+
+ ###  A. Create Controller logic - [x]
+`I’m building authentication on the backend first because it is the core of the app. Since sessions and goals are user-specific, I need working register, login, and protected user routes before building the frontend forms.`
+
+What `authController.js` is doing:
+- **`registerUser`**: creates a new user
+- **`loginUser`**: checks credentials and returns a token
+- **`getMe`**: returns the currently logged-in user
+- **`generateToken`**: creates the JWT used for protected routes
+
+
+
+
+
+### B. Create Routes - [x]
+
+
+
+### C. add middleware - [x]
+
+
 
 
 
