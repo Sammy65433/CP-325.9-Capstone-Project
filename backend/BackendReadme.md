@@ -469,20 +469,6 @@ What `authController.js` is doing:
 - **`getMe`**: returns the currently logged-in user
 - **`generateToken`**: creates the JWT used for protected routes
 
-## Authentication Progress: Register User
-
-I started backend authentication by building the `registerUser` function in `authController.js`. I chose to begin with registration because authentication is the foundation of the application, and later features like sessions and goals will belong to a specific logged-in user.
-
-### What I completed
-- Created the `registerUser` controller function
-- Imported the `User` model into the controller
-- Validated required fields: `username`, `email`, and `password`
-- Checked whether a user with the same email already exists
-- Hashed the password using `bcryptjs`
-- Created and saved the new user in MongoDB
-- Generated a JWT token using `jsonwebtoken`
-- Returned a successful response with safe user data and a token
-
 ### Route setup
 I created an auth route for registration in `authRoutes.js`:
 
@@ -502,22 +488,44 @@ This made the full endpoint:
 POST /api/auth/register
 ```
 
-### Testing
-I tested the route in Thunder Client using:
+## Authentication Progress: Register User
 
-```txt
-POST http://localhost:3000/api/auth/register
+I started backend authentication by building the `registerUser` function in `authController.js`. I chose to begin with registration because authentication is the foundation of the application, and later features like sessions and goals will belong to a specific logged-in user.
+
+### What I completed
+- Created the `registerUser` controller function
+- Imported the `User` model into the controller
+- Validated required fields: `username`, `email`, and `password`
+- Checked whether a user with the same email already exists
+- Hashed the password using `bcryptjs`
+- Created and saved the new user in MongoDB
+- Generated a JWT token using `jsonwebtoken`
+- Returned a successful response with safe user data and a token
+
+
+## Why I used `bcryptjs` and `jsonwebtoken`
+
+### `bcryptjs`
+I used `bcryptjs` to securely hash user passwords before saving them to MongoDB. This is important because passwords should never be stored as plain text in a database. If the database were ever exposed, hashed passwords are much safer than raw passwords.
+
+I also used `bcrypt.compare()` during login to compare the password entered by the user with the hashed password stored in the database.
+
+Example:
+```js
+const hashedPassword = await bcrypt.hash(password, 10)
+const isMatch = await bcrypt.compare(password, user.password)
+
+```md
+## Package docs
+- `bcryptjs`
+  - https://www.npmjs.com/package/bcryptjs
+
+- `jsonwebtoken`
+  - https://www.npmjs.com/package/jsonwebtoken
+
 ```
 
-With this JSON body:
-
-```json
-{
-  "username": "sam",
-  "email": "sam@test.com",
-  "password": "123456"
-}
-```
+Perfect. **register works.**
 
 ### Successful result
 The request worked successfully. In the backend terminal, I saw console logs confirming that:
@@ -538,9 +546,112 @@ The request worked successfully. In the backend terminal, I saw console logs con
 ### What I learned
 This step helped me understand how Express routes, controllers, MongoDB models, password hashing, and JWT authentication work together in a real backend flow.
 
+### Testing
+I tested the route in Thunder Client using:
+
+```txt
+POST http://localhost:3000/api/auth/register
+```
+
+With this JSON body:
+
+```json
+{
+  "username": "sam",
+  "email": "sam@test.com",
+  "password": "123456"
+}
+```
+
 ### Next step
 My next step is to build and test the `loginUser` function, then create protected routes using authentication middleware.
+
+
+
+```md
+## Authentication Progress: Login User
+
+After successfully testing registration, I built and tested the `loginUser` function in `authController.js`.
+
+### What I completed
+- pulled `email` and `password` from `req.body`
+- validated that both fields were provided
+- searched for the user by email with `User.findOne({ email })`
+- used `bcrypt.compare()` to compare the entered password with the hashed password in MongoDB
+- generated a JWT token after a successful login
+- returned a success response with the token and safe user data
+
+### Route setup
+In `authRoutes.js` I added:
+
+```js
+router.post('/login', loginUser)
 ```
+
+Because the routes are mounted in `index.js` with:
+
+```js
+app.use('/api/auth', authRoutes)
+```
+
+the full endpoint became:
+
+```txt
+POST /api/auth/login
+```
+
+### Testing
+I tested the login route in Thunder Client using:
+
+```txt
+POST http://localhost:3000/api/auth/login
+```
+
+With this JSON body:
+
+```json
+{
+  "email": "sam@test.com",
+  "password": "123456"
+}
+```
+Perfect. **Login works too.**
+
+### Successful result
+The request returned:
+
+- status: `200 OK`
+- message: `Login successful`
+- a JWT token
+- the logged-in user's `_id`, `username`, and `email`
+
+This confirmed that:
+- the user could be found in MongoDB
+- the hashed password matched correctly
+- the login flow worked end to end
+- JWT token creation was successful
+
+### Mistake I made
+At first, I got a JSON parsing error because my request body had invalid JSON formatting. I fixed the request body and resent it successfully.
+
+### What I learned
+This step helped me understand how login works in a MERN backend:
+- the backend looks up a user by email
+- `bcrypt.compare()` checks the password securely
+- `jsonwebtoken` creates a token for authenticated access
+
+
+Best next step:
+- test a **wrong password**
+- then build/test **`getMe` with auth middleware**
+
+what you finished today:
+`I completed and tested both registration and login on the backend. I validated inputs, hashed passwords with bcrypt, checked credentials with bcrypt.compare, and returned JWT tokens on successful authentication.`
+
+Also: **commit and push right now**.
+
+
+
 
 
 
@@ -581,4 +692,26 @@ My next step is to build and test the `loginUser` function, then create protecte
 - `nodemon`
   - docs/npm: `https://www.npmjs.com/package/nodemon`
 
+## MDN links for related JavaScript concepts
+
+- `async function`
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+
+- `await`
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await
+
+- `try...catch`
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
+
+- destructuring
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring
+
+- `import`
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+
+- `export`
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
+
+- `process.env` in Node environment variables
+  - https://nodejs.org/api/process.html#processenv
 

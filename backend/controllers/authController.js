@@ -77,3 +77,63 @@ export async function registerUser(req, res) {
         res.status(500).json({ message: 'Server error' })
     }
 }
+
+
+// Handles user login
+export async function loginUser(req, res) {
+    try {
+        console.log('loginUser route hit')
+        console.log('req.body:', req.body)
+
+        // Pulls login credentials from the request body
+        const { email, password } = req.body
+        console.log('parsed login fields:', { email, password })
+
+        // Validates required fields
+        if (!email || !password) {
+            console.log('loginUser failed: missing email or password')
+            return res.status(400).json({ message: 'Email and password are required' })
+        }
+
+        // Finds the user by email
+        const user = await User.findOne({ email })
+        console.log('user found by email:', user)
+
+        // If no user exists, return invalid credentials
+        if (!user) {
+            console.log('loginUser failed: user not found')
+            return res.status(400).json({ message: 'Invalid credentials' })
+        }
+
+        // Compares entered password to the hashed password in the database
+        const isMatch = await bcrypt.compare(password, user.password)
+        console.log('password match result:', isMatch)
+
+        // If passwords do not match, return invalid credentials
+        if (!isMatch) {
+            console.log('loginUser failed: password did not match')
+            return res.status(400).json({ message: 'Invalid credentials' })
+        }
+
+        // Generates a JWT token for the logged-in user
+        const token = generateToken(user._id)
+        console.log('token created for login')
+
+        // Sends a success response with a token and safe user data
+        res.status(200).json({
+            message: 'Login successful',
+            token,
+            user: {
+                _id: user._id,
+                username: user.username,
+                email: user.email,
+            },
+        })
+    } catch (error) {
+        // Logs backend error details
+        console.log('loginUser error:', error.message)
+
+        // Sends a generic server error response
+        res.status(500).json({ message: 'Server error' })
+    }
+}
