@@ -975,6 +975,81 @@ These routes are defined in `authRoutes.js` and mounted in `index.js` using:
 ```js
 app.use('/api/auth', authRoutes)
 ```
+
+
+## Backend Progress Summary
+
+I started my capstone by building the backend first so I could create the foundation of the application before moving to the frontend. I set up the Express server, connected MongoDB, created the `User` model, built authentication controllers and routes, added authentication middleware, and tested the main auth flow end to end.
+
+### What I completed on the backend
+- initialized the backend with Node and Express
+- installed project dependencies:
+  - `express`
+  - `cors`
+  - `mongoose`
+  - `dotenv`
+  - `bcryptjs`
+  - `jsonwebtoken`
+  - `nodemon`
+- configured ES modules with `"type": "module"`
+- created `index.js` as the backend entry point
+- created `db.js` and connected MongoDB
+- created `.env` and `.env.example`
+- created the `User` model with `username`, `email`, and `password`
+- built `authController.js`
+- built `authRoutes.js`
+- built `authMiddleware.js`
+- mounted auth routes in `index.js`
+
+### Authentication features completed
+I completed and tested the following authentication routes:
+
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET /api/auth/me`
+
+### Tests I completed
+- confirmed frontend and backend communication
+- confirmed backend and MongoDB connection
+- confirmed user registration worked
+- confirmed user login worked
+- confirmed wrong password returned `Invalid credentials`
+- confirmed protected route access with a valid Bearer token
+- confirmed auth middleware verified the token and attached decoded data to `req.user`
+- confirmed the password field was excluded from the current user response
+
+### Mistakes I made and fixed
+- typed `http;//` instead of `http://` in Thunder Client
+- accidentally put `POST` inside the URL field instead of only using the method dropdown
+- sent invalid JSON in the request body
+- forgot some `.js` file extensions in imports
+- had to make sure auth routes were mounted correctly in `index.js`
+- initially tested `/me` without a real token and got a malformed JWT error
+- learned that backend `console.log()` appears in the VS Code terminal, not the browser console
+
+### What I learned
+- `index.js` is the main backend entry point and connects all major pieces
+- MongoDB connection should be tested early so the backend is not built on a broken database setup
+- Mongoose models define the structure of data before routes and controllers use it
+- controllers handle the logic, routes define endpoints, and middleware protects private routes
+- `bcryptjs` should be used to hash passwords instead of storing plain text passwords
+- `jsonwebtoken` can create and verify JWTs for authenticated users
+- JWTs are commonly sent in the `Authorization` header using the `Bearer <token>` format
+- middleware can verify the token and attach decoded data to `req.user`
+- protected routes like `getCurrentUser` can use `req.user.userId` to find the logged-in user
+- `.select('-password')` is important for keeping hashed passwords out of API responses
+
+### Current backend milestone
+At this stage, I have a working backend authentication flow with registration, login, token verification, and a protected current-user route. This gives me the foundation I need before moving into the frontend.
+
+### Next step
+My next step is to begin the frontend by creating the authentication UI, connecting forms to the backend auth routes, and then building the rest of the app pages and user flow.
+
+```
+Frontend Readme link: 
+https://github.com/Sammy65433/CP-325.9-Capstone-Project/blob/main/frontend/README.md
+```
+
 ****************************************************************************
 - **Test**
   - 1stTest[x] - confirmed frontend and backend communication
@@ -988,6 +1063,10 @@ app.use('/api/auth', authRoutes)
 ****************************************************************************
 - [x] Done item
 - [ ] Not done item
+
+
+
+
 
 `backend/middleware/authMiddleware.js`
 
