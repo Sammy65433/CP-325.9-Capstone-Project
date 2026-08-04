@@ -353,21 +353,8 @@ This was an important milestone because it verified that the frontend and backen
 - create controller logic - [x]
 - add middleware - [x]
 
-****************************************************************************
-- **Test** 
-****************************************************************************
-- 1stTest[x] - the frontend could successfully send a request to the backend
+**************************************************************************** 
 
--  2ndtest[ ] 
-
-- 3rdtest[ ]
-
-- then build more features - [ ]
-
-****************************************************************************
-- [x] Done item
-- [ ] Not done item
-```
 
 `backend/.env`:
 ```env
@@ -384,12 +371,12 @@ JWT_SECRET=
 ```gitignore
 node_modules/
 .env
+
+
 ```
-
-
 - setup up db.js n connect database - [x]
 
-``md
+```md
 `process.exit(1)` stops the Node server when the database connection fails. This prevents the backend from running without a working MongoDB connection.
 ```
 
@@ -397,6 +384,7 @@ node_modules/
 ```md
 - create model - [x]
 `backend/models/User.js`
+
 
 Why I chose this schema:
 
@@ -525,6 +513,93 @@ const isMatch = await bcrypt.compare(password, user.password)
 
 ```
 
+```md
+### `generateToken(userId)`
+
+I created a helper function called `generateToken(userId)` to generate a JWT for authenticated users.
+
+```js
+function generateToken(userId) {
+  return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '7d' })
+}
+`
+I used:
+- `{ userId }` as the token payload
+- `process.env.JWT_SECRET` as the secret signing key
+- `{ expiresIn: '7d' }` to make the token expire after 7 days
+
+Using a helper function keeps the token logic reusable and avoids repeating the same `jwt.sign()` code in multiple controller functions.
+```
+
+### Why I used a helper function
+I made this a helper function so I could reuse the same token creation logic in multiple places, such as:
+- `registerUser`
+- `loginUser`
+
+This keeps the code cleaner and follows the DRY principle by avoiding repeated `jwt.sign()` code.
+
+### How it works
+The function takes one argument:
+
+- `userId`  
+  This is the MongoDB `_id` of the user who just registered or logged in.
+
+Inside the function, `jwt.sign()` creates the token using three parts:
+
+#### 1. Payload
+```js
+{ userId }
+```
+
+The payload is the data stored inside the token. In this case, I included the user's ID so the backend can later identify which user is making a request.
+
+#### 2. Secret key
+```js
+process.env.JWT_SECRET
+```
+
+This is the private secret used to sign the token. It is stored in an environment variable instead of hardcoding it into the application. This is more secure because sensitive values should not be exposed in source code.
+
+#### 3. Options
+```js
+{ expiresIn: '7d' }
+```
+
+This sets the token to expire in 7 days. That means the token will only be valid for a limited time, which improves security. After it expires, the user would need to log in again to get a new token.
+
+### Why JWT is useful in this app
+JWT authentication is useful because it allows the app to:
+- keep users logged in across requests
+- protect private routes
+- identify the current logged-in user
+- connect user-specific data, such as training sessions and goals, to the correct account
+
+### Example usage
+I used this helper function after successful registration and login.
+
+Example:
+```js
+const token = generateToken(user._id)
+```
+
+Then I returned the token in the response:
+
+```js
+res.status(200).json({
+  message: 'Login successful',
+  token,
+  user: {
+    _id: user._id,
+    username: user.username,
+    email: user.email,
+  },
+})
+```
+
+### Security note
+The token does not store the user's password. It only stores the user ID in the payload. The token is signed with a secret key so the backend can verify that it was created by the application and has not been tampered with.
+
+
 Perfect. **register works.**
 
 ### Successful result
@@ -641,28 +716,139 @@ This step helped me understand how login works in a MERN backend:
 - `jsonwebtoken` creates a token for authenticated access
 
 
-Best next step:
 - test a **wrong password**
-- then build/test **`getMe` with auth middleware**
+I also tested an incorrect password to confirm the login validation worked properly. The route returned `Invalid credentials`, which confirmed that `bcrypt.compare()` correctly rejected a non-matching password.
+
+
+- then build/test **`getCurrentUser`** - currently logged-in user's profile
+
+## Authentication Middleware and Current User Route
+After building and testing the `registerUser` and `loginUser` routes, I started working on authentication middleware and the `getCurrentUser` controller. These pieces are important because they allow the backend to verify a logged-in user before returning protected data.
+
+I used `.select('-password')` to exclude the password field from the response. Even though passwords are hashed before being stored in MongoDB, they should still never be sent back to the client. The frontend only needs safe user information like `_id`, `username`, and `email`.
+
+### Purpose of the authentication middleware
+The purpose of the middleware is to check whether an incoming request includes a valid JWT token. If the token is valid, the middleware decodes it and attaches the user information to `req.user`. If the token is missing or invalid, the middleware returns an unauthorized response.
+
+This is important because protected routes should only be accessible to authenticated users.
+
+### Why I checked for `Bearer`
+I checked whether the `Authorization` header starts with `Bearer ` because JWT tokens are typically sent in the format `Bearer <token>`. This let me confirm the request included a token in the expected structure before splitting the header and verifying the token.
+JWT tokens are commonly sent in the HTTP `Authorization` header using this format:
+
+```txt
+Authorization: Bearer <token>
+```
+checking for `Bearer `:
+- the header should exist
+- it should contain a token in the expected format
+- then you can safely extract just the token part
+
+Why check `startsWith('Bearer ')`:
+- confirms the client sent the token correctly
+- prevents trying to verify a missing or malformed token
+- lets you split the string reliably
+
+
+Example header:
+```txt
+Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
+```
+
+So the flow is:
+1. read `authorization` header
+2. confirm it starts with `Bearer `
+3. extract token
+4. verify token with `jwt.verify()`
+5. attach decoded user info to `req.user`
+```
+
+```
+###  Added Middleware - [x]
+`backend/middleware/authMiddleware.js`
+
+```md
+## Authentication Middleware
+
+I created `authMiddleware` to protect private routes by verifying JWT tokens before a controller runs.
+
+The middleware:
+- reads the `Authorization` header
+- checks that it starts with `Bearer `
+- extracts the token
+- verifies the token with `jwt.verify()`
+- attaches the decoded payload to `req.user`
+- calls `next()` to continue if the token is valid
+
+If the token is missing or invalid, the middleware returns a `401 Unauthorized` response.
+
+This is important because routes like `getCurrentUser` need to know which user is making the request. By attaching the decoded `userId` to `req.user`, the backend can securely look up the current logged-in user and protect user-specific data.
 
 what you finished today:
 `I completed and tested both registration and login on the backend. I validated inputs, hashed passwords with bcrypt, checked credentials with bcrypt.compare, and returned JWT tokens on successful authentication.`
 
+
+
+
+
 Also: **commit and push right now**.
 
 
-
-
-
-
-
 ### B. Create Routes - [x]
+## Routes Created So Far
+
+### Auth Routes
+
+#### Register User
+- **Method:** `POST`
+- **Route:** `/api/auth/register`
+- **Purpose:** creates a new user, hashes the password, saves the user in MongoDB, and returns a JWT token
+
+#### Login User
+- **Method:** `POST`
+- **Route:** `/api/auth/login`
+- **Purpose:** checks the user's email and password, verifies the hashed password with `bcrypt.compare()`, and returns a JWT token if login is successful
+
+These routes are defined in `authRoutes.js` and mounted in `index.js` using:
+
+```js
+app.use('/api/auth', authRoutes)
 
 
 
-### C. Add Middleware - [x]
 
 
+```
+
+
+
+`backend/middleware/authMiddleware.js`
+
+- **jsonwebtoken docs**
+  - https://www.npmjs.com/package/jsonwebtoken
+- **HTTP Authorization header**
+  - https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Authorization
+- **JavaScript strings `startsWith()`**
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
+- **JavaScript `split()`**
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
+- **try...catch**
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
+****************************************************************************
+- **Test**
+  - 1stTest[x] - confirmed frontend and backend communication
+  - 2ndTest[x] - confirmed backend and MongoDB connection
+  - 3rdTest[x] - confirmed `POST /api/auth/register` worked
+  - 4thTest[x] - confirmed `POST /api/auth/login` worked
+  - 5thTest[x] - confirmed wrong password returned `Invalid credentials`
+  - 6thTest[x] - 
+  - 7thTest[x] - 
+  - 8thTest[x] -
+
+
+****************************************************************************
+- [x] Done item
+- [ ] Not done item
 
 
 
@@ -693,7 +879,6 @@ Also: **commit and push right now**.
   - docs/npm: `https://www.npmjs.com/package/nodemon`
 
 ## MDN links for related JavaScript concepts
-
 - `async function`
   - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
 

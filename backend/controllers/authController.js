@@ -137,3 +137,34 @@ export async function loginUser(req, res) {
         res.status(500).json({ message: 'Server error' })
     }
 }
+
+
+// Returns the currently logged-in user's profile
+export async function getCurrentUser(req, res) {
+    try {
+        console.log('getCurrentUser route hit')
+        console.log('req.user from auth middleware:', req.user)
+
+        // Finds the user by the ID that was decoded from the token
+        // .select('-password') removes the password field from the response
+        const user = await User.findById(req.user.userId).select('-password')
+        console.log('user found in getCurrentUser:', user)
+
+        // If user no longer exists, return not found
+        if (!user) {
+            console.log('getCurrentUser failed: user not found')
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        // Sends the current user's data back to the frontend
+        console.log('getCurrentUser success: returning current user profile')
+        res.status(200).json(user)
+    } catch (error) {
+        // Logs backend error details
+        console.log('getCurrentUser error:', error.message)
+
+        // Sends a generic server error response
+        res.status(500).json({ message: 'Server error' })
+    }
+}
+
