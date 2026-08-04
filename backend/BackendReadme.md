@@ -469,8 +469,78 @@ What `authController.js` is doing:
 - **`getMe`**: returns the currently logged-in user
 - **`generateToken`**: creates the JWT used for protected routes
 
+## Authentication Progress: Register User
 
+I started backend authentication by building the `registerUser` function in `authController.js`. I chose to begin with registration because authentication is the foundation of the application, and later features like sessions and goals will belong to a specific logged-in user.
 
+### What I completed
+- Created the `registerUser` controller function
+- Imported the `User` model into the controller
+- Validated required fields: `username`, `email`, and `password`
+- Checked whether a user with the same email already exists
+- Hashed the password using `bcryptjs`
+- Created and saved the new user in MongoDB
+- Generated a JWT token using `jsonwebtoken`
+- Returned a successful response with safe user data and a token
+
+### Route setup
+I created an auth route for registration in `authRoutes.js`:
+
+```js
+router.post('/register', registerUser)
+```
+
+Then I mounted the auth routes in `index.js`:
+
+```js
+app.use('/api/auth', authRoutes)
+```
+
+This made the full endpoint:
+
+```txt
+POST /api/auth/register
+```
+
+### Testing
+I tested the route in Thunder Client using:
+
+```txt
+POST http://localhost:3000/api/auth/register
+```
+
+With this JSON body:
+
+```json
+{
+  "username": "sam",
+  "email": "sam@test.com",
+  "password": "123456"
+}
+```
+
+### Successful result
+The request worked successfully. In the backend terminal, I saw console logs confirming that:
+- the auth routes loaded
+- the register route was hit
+- the request body was received correctly
+- the password was hashed
+- the user was created in MongoDB
+- a JWT token was created
+
+### Mistakes I made and how I fixed them
+- I got an `Invalid URL` error in Thunder Client because I typed the URL incorrectly as `http;//` instead of `http://`
+- I initially had missing `.js` file extensions in some import statements, which needed to be fixed for ES modules
+- I had to make sure the route was actually mounted in `index.js` with `app.use('/api/auth', authRoutes)`
+- I used console logs to verify whether the route and controller were being reached
+- I learned that backend `console.log()` output appears in the VS Code terminal, not in the browser console
+
+### What I learned
+This step helped me understand how Express routes, controllers, MongoDB models, password hashing, and JWT authentication work together in a real backend flow.
+
+### Next step
+My next step is to build and test the `loginUser` function, then create protected routes using authentication middleware.
+```
 
 
 

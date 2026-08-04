@@ -11,7 +11,9 @@ import cors from 'cors'
 import connectDB from './config/db.js'
 
 // Imports authentication routes like register, login, and get current user
-// import authRoutes from './routes/authRoutes'
+import authRoutes from './routes/authRoutes.js'
+console.log('authRoutes loaded')
+
 
 // Creates the Express application
 const app = express()
@@ -25,14 +27,21 @@ app.use(cors())
 // Allows the server to read JSON data sent in request bodies
 app.use(express.json())
 
+// Mounts all auth routes under /api/auth
+// Example: /api/auth/register, /api/auth/login, /api/auth/me
+app.use('/api/auth', authRoutes)
+
+
 // Simple test route to confirm the backend server is running
 app.get('/test', (req, res) => {
     res.json({ message: 'Server is running' })
 })
 
-// Mounts all auth routes under /api/auth
-// Example: /api/auth/register, /api/auth/login, /api/auth/me
-// app.use('/api/auth', authRoutes)
+
+app.post('/hello', (req, res) => {
+  res.json({ message: 'hello post works' })
+})
+
 
 // Starts the server and connects to MongoDB
 app.listen(port, async () => {
