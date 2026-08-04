@@ -784,17 +784,178 @@ If the token is missing or invalid, the middleware returns a `401 Unauthorized` 
 
 This is important because routes like `getCurrentUser` need to know which user is making the request. By attaching the decoded `userId` to `req.user`, the backend can securely look up the current logged-in user and protect user-specific data.
 
-what you finished today:
-`I completed and tested both registration and login on the backend. I validated inputs, hashed passwords with bcrypt, checked credentials with bcrypt.compare, and returned JWT tokens on successful authentication.`
+```md
+## `GET /api/auth/me` Test
 
+I tested the protected `GET /api/auth/me` route using a JWT token from a successful login.
 
+I sent the token in the `Authorization` header using the format:
 
+```txt
+Authorization: Bearer <token>
+```
+
+This confirmed that:
+- the middleware successfully verified the token
+- the decoded token data was attached to `req.user`
+- `getCurrentUser` found the logged-in user in MongoDB
+- the route returned the user's profile without the password field
+```
+
+Your auth progress is now:
+- `POST /api/auth/register` ✅
+- `POST /api/auth/login` ✅
+- wrong password test ✅
+- `GET /api/auth/me` with middleware ✅
+```
+
+How to test:
+
+1. Start backend:
+
+```bash
+node index.js
+```
+
+2. Test route in browser or Postman:
+
+```txt
+http://localhost:3000/test
+```
+
+3. Test register in Postman or Thunder Client:
+
+```txt
+POST http://localhost:3000/api/auth/register
+```
+
+Body JSON:
+
+```json
+{
+  "username": "sam",
+  "email": "sam@example.com",
+  "password": "123456"
+}
+```
+
+4. Test login:
+
+```txt
+POST http://localhost:3000/api/auth/login
+```
+
+Body JSON:
+
+```json
+{
+  "email": "sam@example.com",
+  "password": "123456"
+}
+```
+
+5. Test protected route:
+
+```txt
+GET http://localhost:3000/api/auth/me
+```
+
+Header:
+
+```txt
+Authorization: Bearer YOUR_TOKEN_HERE
+```
+{
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "_id": "...",
+    "username": "sam",
+    "email": "sam@test.com"
+  }
+}
+{
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTcyMDM0OTIwMzc1ZGNhZjZmOTM3ZWYiLCJpYXQiOjE3ODU4Njk4NzgsImV4cCI6MTc4NjQ3NDY3OH0.VvrNhUt2O6uVhGkZIV9LWbNP08MBtTV1SWOfiojpKsc",
+  "user": {
+    "_id": "6a72034920375dcaf6f937ef",
+    "username": "sam",
+    "email": "sam@test.com"
+  }
+}
+Yes, it works. You successfully tested **`GET /api/auth/me`**.
+
+What I proved:
+- login returned a valid JWT
+- the token was sent in the `Authorization` header
+- `authMiddleware` read and verified the token
+- decoded payload was attached to `req.user`
+- `getCurrentUser` used `req.user.userId`
+- MongoDB returned the correct user
+- password was not returned
+
+```md
+## Protected Route Test: Get Current User
+
+After building registration, login, and authentication middleware, I tested the protected current-user route.
+
+### Route tested
+```txt
+GET /api/auth/me
+```
+
+### Header used
+```txt
+Authorization: Bearer <JWT token from login>
+```
+
+### What this test confirmed
+This test confirmed that:
+- the login route returned a valid JWT token
+- the token could be sent in the `Authorization` header
+- the authentication middleware could read the header
+- the middleware correctly checked for the `Bearer` format
+- the token was extracted successfully
+- `jsonwebtoken.verify()` decoded the token payload
+- the decoded payload was attached to `req.user`
+- `getCurrentUser` used `req.user.userId` to find the logged-in user in MongoDB
+- the protected route returned the current user's profile
+- the password field was excluded from the response using `.select('-password')`
+
+### Example successful response
+```json
+{
+  "_id": "6a72034920375dcaf6f937ef",
+  "username": "sam",
+  "email": "sam@test.com",
+  "createdAt": "2026-08-04T15:20:41.634Z",
+  "updatedAt": "2026-08-04T15:20:41.634Z",
+  "__v": 0
+}
+```
+
+### Important security detail
+The password field was not returned in the response. This is because I used:
+
+```js
+.select('-password')
+```
+to remove the hashed password before sending user data back to the client.
+### What I learned
+This helped me understand how protected routes work in a MERN application:
+- login creates a token
+- the client sends the token back on future requests
+- middleware verifies the token
+- the backend can identify the authenticated user
+- protected routes can safely return user-specific data
+```
 
 
 Also: **commit and push right now**.
 
 
-### B. Create Routes - [x]
+```
+###  Created Routes - [x]
 ## Routes Created So Far
 
 ### Auth Routes
@@ -813,14 +974,20 @@ These routes are defined in `authRoutes.js` and mounted in `index.js` using:
 
 ```js
 app.use('/api/auth', authRoutes)
-
-
-
-
-
 ```
-
-
+****************************************************************************
+- **Test**
+  - 1stTest[x] - confirmed frontend and backend communication
+  - 2ndTest[x] - confirmed backend and MongoDB connection
+  - 3rdTest[x] - confirmed `POST /api/auth/register` worked
+  - 4thTest[x] - confirmed `POST /api/auth/login` worked
+  - 5thTest[x] - confirmed wrong password returned `Invalid credentials`
+  - 6thTest[x] - confirmed `GET /api/auth/me` worked with a valid Bearer token
+  - 7thTest[x] - confirmed `authMiddleware` verified the token and attached decoded user data to `req.user`
+  - 8thTest[x] - confirmed the password field was excluded from the response
+****************************************************************************
+- [x] Done item
+- [ ] Not done item
 
 `backend/middleware/authMiddleware.js`
 
@@ -834,23 +1001,6 @@ app.use('/api/auth', authRoutes)
   - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
 - **try...catch**
   - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
-****************************************************************************
-- **Test**
-  - 1stTest[x] - confirmed frontend and backend communication
-  - 2ndTest[x] - confirmed backend and MongoDB connection
-  - 3rdTest[x] - confirmed `POST /api/auth/register` worked
-  - 4thTest[x] - confirmed `POST /api/auth/login` worked
-  - 5thTest[x] - confirmed wrong password returned `Invalid credentials`
-  - 6thTest[x] - 
-  - 7thTest[x] - 
-  - 8thTest[x] -
-
-
-****************************************************************************
-- [x] Done item
-- [ ] Not done item
-
-
 
   `MDN Doc used:`
 

@@ -164,7 +164,6 @@ A full-stack MERN application that allows users to log sports training sessions,
 - Mongoose
 - JWT Authentication
 
-
 - User authentication
 - Create/read/update/delete training sessions
 - Create/read/update/delete goals
