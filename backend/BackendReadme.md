@@ -473,11 +473,13 @@ What `authController.js` is doing:
 
 
 
+
+
 ### B. Create Routes - [x]
 
 
 
-### C. add middleware - [x]
+### C. Add Middleware - [x]
 
 
 
