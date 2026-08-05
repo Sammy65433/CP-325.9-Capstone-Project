@@ -181,7 +181,7 @@ A full-stack MERN application that allows users to log sports training sessions,
 `I’m prioritizing the core app first: pages, navigation, sessions, goals, and dashboard. I’m keeping auth on the shelf for now so I don’t lose time on something that could block the rest of the project.`
 
 ```md
-
+```
 
 
 
@@ -352,25 +352,93 @@ My next step is to:
 - create the `SessionsPage` layout
 - create the `GoalsPage` layout
 - then connect the frontend to backend CRUD routes for sessions and goals
-
-For now, I am leaving full authentication wiring on the shelf so I can focus on the main application features first.
 ```
 
 ```md
 ## Next Step:
 Next, I will build out the actual page content for the dashboard, sessions, goals, and profile pages before connecting those views to backend CRUD functionality.
 ```
+## Step 9 Dashboard Page Completed
+
+After setting up the frontend structure and routing, I built and styled the first main page of the application: the `DashboardPage`.
+
+### What I completed
+I created a dashboard layout for the Sports Training Tracker app that gives the user a simple overview of their activity and progress.
+
+The dashboard currently includes:
+- a main dashboard title
+- three summary cards:
+  - `Total Sessions`
+  - `Active Goals`
+  - `Latest Activity`
+- a `Recent Sessions` section
+- a `Goal Progress` section
+
+### Why I built the dashboard first
+I chose to build the dashboard first because it acts as the main landing page of the app after navigation is in place. It gives the project a central home page and helps shape the overall look and feel of the application before connecting live data.
+
+It also helps me think ahead about what information users should see first when they open the app.
+
+### `DashboardPage.jsx`
+The page structure was built using semantic sections and reusable CSS class names.
+
+This gave the page:
+- a clear heading
+- grouped summary content
+- separate content panels for future data
+
+### Styling approach
+I added styling through `DashboardPage.css` to make the page feel more like a real application instead of plain placeholder text.
+
+The styling included:
+- centered page layout
+- spacing and padding
+- card-style summary boxes
+- bordered content sections
+- cleaner visual hierarchy with headings and panels
+
+### What this page is preparing for later
+Even though the dashboard is using placeholder content right now, it is designed to support real data later.
+
+Eventually, I plan to connect it to backend data such as:
+- total number of training sessions
+- active goals count
+- recent session entries
+- goal progress updates
+
+### Current frontend milestone
+At this stage, I now have:
+- React Router working
+- the main page routes created
+- a shared navigation bar
+- a completed and styled dashboard page
+
+This means the frontend is starting to move from structure into actual interface design.
+
+### What I learned
+This step helped me practice:
+- building a page layout in React
+- using semantic sections for structure
+- using CSS classes to organize styling
+- designing with future dynamic data in mind
+- thinking about user experience early in the project
+
+### Next step
+My next step is to build the `SessionsPage` layout.
+
+That page will likely include:
+- a page title
+- a form section for adding training sessions
+- a list section to display session entries
+
+After that, I will build the `GoalsPage` in a similar way.
 
 
 
 
 
 
-
-
-
-
-## Next Frontend Build Order
+### Next Frontend Build Order
 
 - [x] run frontend
 - [x] install `react-router-dom`
@@ -386,9 +454,9 @@ Next, I will build out the actual page content for the dashboard, sessions, goal
 - [x] create `GoalsPage`
 - [x] create `ProfilePage`
 
-- [ ] build `DashboardPage` layout
+- [x] build `DashboardPage` layout
 - [ ] build `SessionsPage` layout
-- [ ] build `GoalsPage` layout
+- [x] build `GoalsPage` layout
 - [ ] build `ProfilePage` layout
 - [ ] add basic CSS for page layouts
 - [ ] create reusable cards/sections if needed

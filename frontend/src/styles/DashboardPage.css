@@ -11,6 +11,7 @@
 
 .dashboard-cards {
     display: grid;
+    /* Creates 3 equal-width columns in the grid layout */
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin-bottom: 2rem;
@@ -22,5 +23,14 @@
     border-radius: 10px;
     padding: 1.5rem;
     text-align: center;
+    /* Makes the text semi-bold so the card content stands out more */
     font-weight: 600;
+}
+
+.dashboard-section {
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
 }

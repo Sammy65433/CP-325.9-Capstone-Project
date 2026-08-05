@@ -12,12 +12,12 @@ export default function DashboardPage() {
         <div className='dashboard-card'>Latest Activity</div>
     </section>
 
-    <section>
+    <section className='dashboard-section'>
         <h2>Recent Sessions</h2>
         <p>Recent Training Sessions Appear here.</p>
     </section>
 
-    <section>
+    <section className='dashboard-section'>
         <h2>Goal Progress</h2>
         <p>Goal Progression appear here.</p>
     </section>
