@@ -136,7 +136,7 @@ Adhere to Agile principles and the Scrum framework. Perform stand-up sessions (w
 Successfully track your project using a software similar to Jira.	1%
 
 Build your application primarily with TypeScript.	3%
-*************************************************************************************
+*********************************************************************************************************************************************************************************************************
 
 `Capstone Project:`
 
@@ -566,3 +566,109 @@ For now, I am still keeping full JWT authentication on the shelf so I can priori
 
 - `nodemon`
   - docs/npm: `https://www.npmjs.com/package/nodemon`
+
+  ## Frontend Docs and MDN References Used for Frontend 
+
+### React
+- React docs
+  - https://react.dev/
+
+### React DOM
+- React DOM docs
+  - https://react.dev/reference/react-dom
+
+### React Router
+- React Router docs
+  - https://reactrouter.com/en/main
+
+### `BrowserRouter`
+- React Router `BrowserRouter`
+  - https://reactrouter.com/en/main/router-components/browser-router
+
+### `Routes`
+- React Router `Routes`
+  - https://reactrouter.com/en/main/components/routes
+
+### `Route`
+- React Router `Route`
+  - https://reactrouter.com/en/main/components/route
+
+### `Link`
+- React Router `Link`
+  - https://reactrouter.com/en/main/components/link
+
+### JSX
+- React docs on writing markup with JSX
+  - https://react.dev/learn/writing-markup-with-jsx
+
+### Components
+- React docs on your first component
+  - https://react.dev/learn/your-first-component
+
+### Import and Export
+- MDN `import`
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+- MDN `export`
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
+
+### Forms
+- React docs on forms
+  - https://react.dev/reference/react-dom/components/input
+- React docs on `textarea`
+  - https://react.dev/reference/react-dom/components/textarea
+- React docs on `select`
+  - https://react.dev/reference/react-dom/components/select
+- MDN HTML forms guide
+  - https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms
+
+### CSS
+- MDN CSS reference
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference
+- MDN `display`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/display
+- MDN `grid-template-columns`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
+- MDN `gap`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/gap
+- MDN `padding`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/padding
+- MDN `margin`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/margin
+- MDN `border-radius`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius
+- MDN `box-shadow`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
+- MDN `font-size`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/font-size
+- MDN `font-weight`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight
+- MDN `color`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/color
+- MDN `background-color`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/background-color
+- MDN `max-width`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/max-width
+- MDN `text-align`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/text-align
+- MDN `cursor`
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
+
+### Semantic HTML
+- MDN `<main>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main
+- MDN `<section>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section
+- MDN headings
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/Heading_Elements
+- MDN `<form>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+- MDN `<label>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label
+- MDN `<input>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+- MDN `<textarea>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/textarea
+- MDN `<select>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select
+- MDN `<button>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button
