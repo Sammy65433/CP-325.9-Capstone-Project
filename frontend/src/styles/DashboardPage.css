@@ -1,0 +1,26 @@
+.dashboard-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.dashboard-title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.dashboard-card {
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}

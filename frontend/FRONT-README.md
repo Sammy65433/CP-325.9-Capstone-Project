@@ -180,16 +180,36 @@ A full-stack MERN application that allows users to log sports training sessions,
 
 `I’m prioritizing the core app first: pages, navigation, sessions, goals, and dashboard. I’m keeping auth on the shelf for now so I don’t lose time on something that could block the rest of the project.`
 
+```md
 
-## Step 8
-- **1. Start the frontend app/ Install frontend routing**
+
+
+
+## Step 8: Frontend Setup and Routing
+
+After finishing the backend foundation, I moved to the frontend and started building the main React application structure. At this stage, my goal was to organize the frontend clearly, install routing, and create the first set of pages so the application could start taking shape visually.
+
+### What I completed
+I completed the initial frontend setup by:
+
+- installing frontend dependencies
+- starting the React development server
+- installing `react-router-dom`
+- creating the main frontend folder structure
+- creating placeholder pages for the core app views
+- creating a shared `Navbar` component
+- setting up React Router in `App.jsx`
+- wrapping the app with `BrowserRouter` in `main.jsx`
+- creating a `styles` folder for page and component CSS organization
+
+### Commands used
 ```bash
 npm install
 npm run dev
 npm install react-router-dom
-
 ```
-- **2. Create frontend structure**
+
+### Frontend structure created
 ```bash
 src/
   components/
@@ -219,25 +239,165 @@ src/
 
   App.jsx
   main.jsx
-
-
 ```
-## Frontend Steps
+
+### Why I created this structure
+I organized the frontend this way so the project would stay clean and scalable as more features are added.
+
+- `components/` holds reusable UI pieces like the navigation bar
+- `pages/` holds the main views of the application
+- `services/` will hold API request logic later
+- `styles/` keeps CSS organized by page and component
+- `App.jsx` controls the main route structure
+- `main.jsx` is the frontend entry point
+
+This structure follows best practices and makes the project easier to maintain.
+
+### `App.jsx`
+I updated `App.jsx` to become the main route map for the frontend instead of using the earlier test-only setup.
+
+```jsx
+import './styles/App.css'
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar.jsx'
+import DashboardPage from './pages/DashboardPage.jsx'
+import SessionsPage from './pages/SessionsPage.jsx'
+import GoalsPage from './pages/GoalsPage.jsx'
+import ProfilePage from './pages/ProfilePage.jsx'
+import LoginPage from './pages/LoginPage.jsx'
+import RegisterPage from './pages/RegisterPage.jsx'
+
+export default function App() {
+  return (
+    <>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<DashboardPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/sessions" element={<SessionsPage />} />
+        <Route path="/goals" element={<GoalsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
+    </>
+  )
+}
+```
+
+### Why I changed `App.jsx`
+Earlier, `App.jsx` was only being used to test whether the frontend could successfully fetch data from the backend. Once that test was complete, I replaced that temporary setup with the actual route structure for the application.
+
+This was important because:
+- the capstone requires multiple pages
+- React Router is required
+- the app needs navigation between views
+- `App.jsx` should act as the main route map for the user interface
+
+### `main.jsx`
+I also updated `main.jsx` so the application is wrapped in `BrowserRouter`.
+
+This is necessary because React Router will not work unless the app is wrapped in a router provider.
+
+### `Navbar.jsx`
+I created a shared navigation bar using `Link` from `react-router-dom`.
+
+```jsx
+import { Link } from 'react-router-dom'
+import '../styles/Navbar.css'
+
+export default function Navbar() {
+  return (
+    <nav>
+      <Link to="/dashboard">Dashboard</Link>
+      <Link to="/sessions">Sessions</Link>
+      <Link to="/goals">Goals</Link>
+      <Link to="/profile">Profile</Link>
+      <Link to="/login">Login</Link>
+      <Link to="/register">Register</Link>
+    </nav>
+  )
+}
+```
+
+### Why I created the navbar
+The navbar gives the user a consistent way to move between pages in the application. It also helps satisfy the capstone requirement to include navigation across pages using React Router.
+
+### Current frontend milestone
+At this stage, I have:
+- a working React app
+- routing installed
+- multiple pages created
+- a shared navbar
+- the main route structure connected
+
+This gives me the frontend skeleton I need before adding page content, forms, and API integration.
+
+### What I learned
+This step helped me understand:
+- how to structure a larger React project
+- the difference between page components and reusable components
+- how React Router uses `Routes`, `Route`, and `Link`
+- why `BrowserRouter` must wrap the app in `main.jsx`
+- how organizing CSS into a `styles` folder can make the project easier to manage
+
+### Notes
+While testing, I saw some browser console errors from a Chrome extension. Those errors were not coming from my React project. My app was still rendering correctly, and the route structure was working.
+
+### Next step
+My next step is to:
+- build out the content of each page
+- start with the `DashboardPage`
+- create the `SessionsPage` layout
+- create the `GoalsPage` layout
+- then connect the frontend to backend CRUD routes for sessions and goals
+
+For now, I am leaving full authentication wiring on the shelf so I can focus on the main application features first.
+```
+
+```md
+## Next Step:
+Next, I will build out the actual page content for the dashboard, sessions, goals, and profile pages before connecting those views to backend CRUD functionality.
+```
+
+
+
+
+
+
+
+
+
+
+## Next Frontend Build Order
 
 - [x] run frontend
 - [x] install `react-router-dom`
 - [x] create `pages` folder
 - [x] create `components` folder
-- [x] create `services` folder
-- [x] create `styles` folder
-- [ ] build `App.jsx` routes
-- [ ] create `Navbar`
-- [ ] create `DashboardPage`
-- [ ] create `SessionsPage`
-- [ ] create `GoalsPage`
-- [ ] create `ProfilePage`
-- [ ] create `LoginPage` UI only
-- [ ] create `RegisterPage` UI only
+- [x] build `App.jsx` routes
+- [x] create `Navbar`
+- [x] create `RegisterPage`
+- [x] create `LoginPage`
+- [x] create `authService.js`
+- [x] create `DashboardPage`
+- [x] create `SessionsPage`
+- [x] create `GoalsPage`
+- [x] create `ProfilePage`
+
+- [ ] build `DashboardPage` layout
+- [ ] build `SessionsPage` layout
+- [ ] build `GoalsPage` layout
+- [ ] build `ProfilePage` layout
+- [ ] add basic CSS for page layouts
+- [ ] create reusable cards/sections if needed
+- [ ] then connect sessions/goals to backend CRUD
+
+
+
+
+
 
 
 
