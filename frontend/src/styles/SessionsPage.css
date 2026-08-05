@@ -1,0 +1,12 @@
+.sessions-page {
+    /* Centers page content and keeps the layout from stretching too wide */
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.sessions-header {
+    /* Centers the heading and adds space below it */
+    text-align: center;
+    margin-bottom: 2rem;
+}
