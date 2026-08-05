@@ -45,3 +45,63 @@
     /* Styles the placeholder text inside each panel */
     color: grey;
 }
+
+.goals-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.goals-button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.goals-button:hover {
+    background-color: #1d4ed8;
+}
+
+.goal-card {
+    /* Creates a smaller card for each saved goal */
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.goal-card h3 {
+    /* Styles the saved goal title */
+    margin-bottom: 0.5rem;
+    color: #111827;
+}
+
+.goal-card p {
+    /* Styles the saved goal details */
+    margin: 0.35rem 0;
+    color: #4b5563;
+}

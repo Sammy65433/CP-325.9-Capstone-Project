@@ -75,14 +75,28 @@ export default function SessionsPage() {
                         Add session
                     </button>
                 </form>
-                </section>
+            </section>
 
-                
-            {/* This section will later display progress updates for the user's goals */}
+{/* Fake saved  */}
+            {/* This panel will later display the user's saved sessions */}
             <section className="sessions-panel">
                 <h2>Your Sessions</h2>
-                <p>Your saved training sessions will appear here.</p>
+
+                <div className="session-card">
+                    <h3>Basketball Shooting Workout</h3>
+                    <p><strong>Duration:</strong> 45 minutes</p>
+                    <p><strong>Date:</strong> 2026-08-05</p>
+                    <p><strong>Notes:</strong> Focused on free throws and mid-range shooting.</p>
+                </div>
+
+                <div className="session-card">
+                    <h3>Track Sprint Practice</h3>
+                    <p><strong>Duration:</strong> 30 minutes</p>
+                    <p><strong>Date:</strong> 2026-08-04</p>
+                    <p><strong>Notes:</strong> Worked on short bursts and acceleration drills.</p>
+                </div>
             </section>
+
         </main>
     )
 }

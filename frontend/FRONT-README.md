@@ -358,15 +358,29 @@ My next step is to:
 ## Next Step:
 Next, I will build out the actual page content for the dashboard, sessions, goals, and profile pages before connecting those views to backend CRUD functionality.
 ```
-## Step 9 Dashboard Page Completed
 
-After setting up the frontend structure and routing, I built and styled the first main page of the application: the `DashboardPage`.
 
-### What I completed
-I created a dashboard layout for the Sports Training Tracker app that gives the user a simple overview of their activity and progress.
+## Step 9: Frontend Page Layout Progress
+
+After building the frontend structure, setting up React Router, and creating the main routes, I continued developing the core interface of the Sports Training Tracker application. At this stage, I focused on shaping the main user-facing pages so the app would look like a real product before connecting live data from the backend.
+
+### Pages completed so far
+I created and structured the following frontend pages:
+
+- `DashboardPage`
+- `SessionsPage`
+- `GoalsPage`
+- `ProfilePage`
+- `LoginPage`
+- `RegisterPage`
+
+At this point, the main app pages are in place and connected through navigation.
+
+### `DashboardPage` completed
+I built and styled the dashboard as the central home page of the application.
 
 The dashboard currently includes:
-- a main dashboard title
+- a main page title
 - three summary cards:
   - `Total Sessions`
   - `Active Goals`
@@ -374,76 +388,118 @@ The dashboard currently includes:
 - a `Recent Sessions` section
 - a `Goal Progress` section
 
-### Why I built the dashboard first
-I chose to build the dashboard first because it acts as the main landing page of the app after navigation is in place. It gives the project a central home page and helps shape the overall look and feel of the application before connecting live data.
+I chose to build the dashboard first because it acts as the main landing page of the app and helps establish the visual structure for the rest of the frontend.
 
-It also helps me think ahead about what information users should see first when they open the app.
+### `SessionsPage` completed
+I built the `SessionsPage` layout and expanded it beyond a simple placeholder.
 
-### `DashboardPage.jsx`
-The page structure was built using semantic sections and reusable CSS class names.
+The page currently includes:
+- a page title and subtitle
+- a training session form layout
+- fields for:
+  - sport
+  - drill or workout name
+  - duration
+  - date
+  - notes
+- a submit button
+- a saved sessions section with dummy session cards
 
-This gave the page:
-- a clear heading
-- grouped summary content
-- separate content panels for future data
+This page is designed to support future CRUD functionality where users will be able to create, view, and later edit or delete training sessions.
 
-### Styling approach
-I added styling through `DashboardPage.css` to make the page feel more like a real application instead of plain placeholder text.
+### `GoalsPage` completed
+I also built the `GoalsPage` layout to mirror the structure of the sessions page.
 
-The styling included:
-- centered page layout
+The page currently includes:
+- a page title and subtitle
+- a goal form layout
+- fields for:
+  - goal title
+  - target value
+  - current value
+  - deadline
+  - status
+- a submit button
+- a saved goals section with dummy goal cards
+
+This helps prepare the app for future goal tracking and progress updates once the backend is connected.
+
+### `ProfilePage` completed
+I created the `ProfilePage` structure to give the user a place to view account-related information.
+
+The page currently includes:
+- a profile title and subtitle
+- an account information section
+- a training focus section
+
+Right now this page uses placeholder data, but it gives me the structure I need for future user information display.
+
+### Dummy data added
+To make the app feel more complete before wiring it to the backend, I added dummy content to the sessions and goals sections.
+
+For example:
+- sample saved training sessions
+- sample saved training goals
+
+This makes the UI look more realistic and helps me visualize how the live data will appear later.
+
+### Why I focused on layout first
+Based on the time available and instructor feedback, I decided to focus first on:
+- core pages
+- navigation
+- forms
+- user flow
+- the main application idea
+
+instead of spending too much time on full JWT-based authentication right away.
+
+This was important because the capstone needs to feel like a working application, not just a login page with no real features behind it.
+
+### Styling progress
+I added basic CSS styling to the page layouts so the app would feel more polished and readable.
+
+Styling currently includes:
+- centered content layout
 - spacing and padding
-- card-style summary boxes
-- bordered content sections
-- cleaner visual hierarchy with headings and panels
+- card and panel styling
+- form field styling
+- button styling
+- section hierarchy with headings and subtitles
 
-### What this page is preparing for later
-Even though the dashboard is using placeholder content right now, it is designed to support real data later.
-
-Eventually, I plan to connect it to backend data such as:
-- total number of training sessions
-- active goals count
-- recent session entries
-- goal progress updates
+I also organized the CSS into a dedicated `styles` folder so each page can have its own file.
 
 ### Current frontend milestone
-At this stage, I now have:
-- React Router working
-- the main page routes created
-- a shared navigation bar
-- a completed and styled dashboard page
+At this point, I now have:
+- React Router installed and working
+- navigation between pages
+- `App.jsx` route structure
+- `main.jsx` wrapped in `BrowserRouter`
+- a shared `Navbar`
+- a completed dashboard page
+- completed sessions page layout
+- completed goals page layout
+- completed profile page layout
+- placeholder login and register pages
+- dummy cards added to sessions and goals
 
-This means the frontend is starting to move from structure into actual interface design.
+This means the app has moved beyond structure only and now has visible feature pages that represent the main purpose of the project.
 
 ### What I learned
-This step helped me practice:
-- building a page layout in React
-- using semantic sections for structure
-- using CSS classes to organize styling
-- designing with future dynamic data in mind
-- thinking about user experience early in the project
+This stage helped me practice:
+- breaking a React project into pages and components
+- using React Router for page navigation
+- organizing CSS by page
+- building forms in React before backend integration
+- designing layouts that can later hold dynamic data
+- creating a more realistic user interface using temporary placeholder and dummy content
 
-### Next step
-My next step is to build the `SessionsPage` layout.
-
-That page will likely include:
-- a page title
-- a form section for adding training sessions
-- a list section to display session entries
-
-After that, I will build the `GoalsPage` in a similar way.
-
-
-
-
-
-
-### Next Frontend Build Order
-
+### Frontend build progress checklist
 - [x] run frontend
 - [x] install `react-router-dom`
 - [x] create `pages` folder
 - [x] create `components` folder
+- [x] create `services` folder
+- [x] create `styles` folder
 - [x] build `App.jsx` routes
 - [x] create `Navbar`
 - [x] create `RegisterPage`
@@ -453,21 +509,28 @@ After that, I will build the `GoalsPage` in a similar way.
 - [x] create `SessionsPage`
 - [x] create `GoalsPage`
 - [x] create `ProfilePage`
-
 - [x] build `DashboardPage` layout
 - [x] build `SessionsPage` layout
 - [x] build `GoalsPage` layout
 - [x] build `ProfilePage` layout
 - [x] add basic CSS for page layouts
-- [x] create reusable cards/sections if needed
-
-- [ ] finish `GoalsPage` layout if needed
-- [ ] turn `SessionsPage` into a real form layout
-- [ ] turn `GoalsPage` into a real form layout
-- [ ] add real placeholder profile info in `ProfilePage`
+- [x] create reusable cards and sections if needed
+- [x] turn `SessionsPage` into a real form layout
+- [x] turn `GoalsPage` into a real form layout
+- [x] add dummy sessions and dummy goals
+- [ ] add real placeholder profile info if needed
 - [ ] style `Navbar`
 - [ ] connect session and goal pages to backend
+- [ ] decide whether login/register will remain simple placeholders or basic redirect pages
 
+### Next step
+My next step is to:
+- style the `Navbar`
+- polish the page layouts
+- begin connecting `SessionsPage` and `GoalsPage` to the backend
+- start turning the dummy content into real dynamic data from MongoDB
+
+For now, I am still keeping full JWT authentication on the shelf so I can prioritize the core app functionality and meet the capstone requirements first.
 
 
 

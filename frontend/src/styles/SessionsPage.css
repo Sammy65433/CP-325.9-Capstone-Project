@@ -15,19 +15,19 @@
     /* Makes the main page title larger and more prominent */
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    color: black;
+    color: #111827;
 }
 
 .sessions-subtitle {
     /* Styles the smaller descriptive text under the title */
-    color: gray;
+    color: #6b7280;
     font-size: 1rem;
 }
 
 .sessions-panel {
     /* Creates boxed sections for the session form and session list */
-    background-color: white;
-    border: 1px solid grey;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -38,10 +38,86 @@
 .sessions-panel h2 {
     /* Styles section headings inside each panel */
     margin-bottom: 1rem;
-    color: black;
+    color: #111827;
+    text-align: center;
 }
 
 .sessions-panel p {
     /* Styles the placeholder text inside the panels */
-    color: grey;
+    color: #6b7280;
+}
+
+.sessions-form {
+    /* Stacks the form fields vertically with spacing between them */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    /* Groups each label and input together */
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    /* Styles form labels so they stand out above inputs */
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #111827;
+    text-align: center;
+}
+
+.form-group input,
+.form-group textarea {
+    /* Styles the input and textarea fields with padding and rounded borders */
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    /* Prevents the notes box from being resized too wildly */
+    resize: vertical;
+}
+
+.sessions-button {
+    /* Styles the submit button for adding a session */
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
+}
+
+.sessions-button:hover {
+    /* Darkens the button slightly when the user hovers over it */
+    background-color: #1d4ed8;
+}
+
+.session-card {
+    /* Creates a smaller card for each saved training session */
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.session-card h3 {
+    /* Styles the saved session title */
+    margin-bottom: 0.5rem;
+    color: #111827;
+}
+
+.session-card p {
+    /* Styles the saved session details */
+    margin: 0.35rem 0;
+    color: #4b5563;
 }
