@@ -9,7 +9,7 @@ export default function GoalsPage() {
             <section className='goals-header'>
                 <h1 className='goals-title'>Training Goals</h1>
                 <p className='goals-subtitle'>
-                    Set goals, Track progress, and stay focused!</p>
+                    Set Goals, Track Progress, and Stay focused!</p>
             </section>
 
             {/* This section will later hold the form for creating a new goal */}

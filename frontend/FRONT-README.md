@@ -455,12 +455,19 @@ After that, I will build the `GoalsPage` in a similar way.
 - [x] create `ProfilePage`
 
 - [x] build `DashboardPage` layout
-- [ ] build `SessionsPage` layout
+- [x] build `SessionsPage` layout
 - [x] build `GoalsPage` layout
-- [ ] build `ProfilePage` layout
-- [ ] add basic CSS for page layouts
-- [ ] create reusable cards/sections if needed
-- [ ] then connect sessions/goals to backend CRUD
+- [x] build `ProfilePage` layout
+- [x] add basic CSS for page layouts
+- [x] create reusable cards/sections if needed
+
+- [ ] finish `GoalsPage` layout if needed
+- [ ] turn `SessionsPage` into a real form layout
+- [ ] turn `GoalsPage` into a real form layout
+- [ ] add real placeholder profile info in `ProfilePage`
+- [ ] style `Navbar`
+- [ ] connect session and goal pages to backend
+
 
 
 

@@ -10,3 +10,38 @@
     text-align: center;
     margin-bottom: 2rem;
 }
+
+.sessions-title {
+    /* Makes the main page title larger and more prominent */
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: black;
+}
+
+.sessions-subtitle {
+    /* Styles the smaller descriptive text under the title */
+    color: gray;
+    font-size: 1rem;
+}
+
+.sessions-panel {
+    /* Creates boxed sections for the session form and session list */
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    min-height: 180px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.sessions-panel h2 {
+    /* Styles section headings inside each panel */
+    margin-bottom: 1rem;
+    color: black;
+}
+
+.sessions-panel p {
+    /* Styles the placeholder text inside the panels */
+    color: grey;
+}
