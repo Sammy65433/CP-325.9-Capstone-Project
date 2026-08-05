@@ -176,10 +176,68 @@ A full-stack MERN application that allows users to log sports training sessions,
 - pull team/player data from a sports API
 - or show sports news / team logos / player search
 
+`Continuation form BackendReadme: https://github.com/Sammy65433/CP-325.9-Capstone-Project/blob/main/backend/BackendReadme.md`
 
-## Step 
+`I’m prioritizing the core app first: pages, navigation, sessions, goals, and dashboard. I’m keeping auth on the shelf for now so I don’t lose time on something that could block the rest of the project.`
 
 
+## Step 8
+- **1. Start the frontend app/ Install frontend routing**
+```bash
+npm install
+npm run dev
+npm install react-router-dom
+
+```
+- **2. Create frontend structure**
+```bash
+src/
+  components/
+    Navbar.jsx
+
+  pages/
+    DashboardPage.jsx
+    SessionsPage.jsx
+    GoalsPage.jsx
+    ProfilePage.jsx
+    LoginPage.jsx
+    RegisterPage.jsx
+
+  services/
+    authService.js
+
+  styles/
+    Navbar.css
+    DashboardPage.css
+    SessionsPage.css
+    GoalsPage.css
+    ProfilePage.css
+    LoginPage.css
+    RegisterPage.css
+    App.css
+    index.css
+
+  App.jsx
+  main.jsx
+
+
+```
+## Frontend Steps
+
+- [x] run frontend
+- [x] install `react-router-dom`
+- [x] create `pages` folder
+- [x] create `components` folder
+- [x] create `services` folder
+- [x] create `styles` folder
+- [ ] build `App.jsx` routes
+- [ ] create `Navbar`
+- [ ] create `DashboardPage`
+- [ ] create `SessionsPage`
+- [ ] create `GoalsPage`
+- [ ] create `ProfilePage`
+- [ ] create `LoginPage` UI only
+- [ ] create `RegisterPage` UI only
 
 
 
