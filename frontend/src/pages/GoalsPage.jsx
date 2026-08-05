@@ -1,6 +1,7 @@
 import '../styles/GoalsPage.css'
 
 export default function GoalsPage() {
+    console.log('GoalsPage rendered')
 
     return (
         <main className='goals-page'>
