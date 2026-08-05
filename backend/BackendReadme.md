@@ -476,7 +476,7 @@ This made the full endpoint:
 POST /api/auth/register
 ```
 
-## Authentication Progress: Register User
+## Step 4: Authentication Progress: Register User
 
 I started backend authentication by building the `registerUser` function in `authController.js`. I chose to begin with registration because authentication is the foundation of the application, and later features like sessions and goals will belong to a specific logged-in user.
 
@@ -491,7 +491,7 @@ I started backend authentication by building the `registerUser` function in `aut
 - Returned a successful response with safe user data and a token
 
 
-## Why I used `bcryptjs` and `jsonwebtoken`
+### Why I used `bcryptjs` and `jsonwebtoken`
 
 ### `bcryptjs`
 I used `bcryptjs` to securely hash user passwords before saving them to MongoDB. This is important because passwords should never be stored as plain text in a database. If the database were ever exposed, hashed passwords are much safer than raw passwords.
@@ -644,7 +644,7 @@ My next step is to build and test the `loginUser` function, then create protecte
 
 
 ```md
-## Authentication Progress: Login User
+## Step 5: Authentication Progress: Login User
 
 After successfully testing registration, I built and tested the `loginUser` function in `authController.js`.
 
@@ -722,7 +722,7 @@ I also tested an incorrect password to confirm the login validation worked prope
 
 - then build/test **`getCurrentUser`** - currently logged-in user's profile
 
-## Authentication Middleware and Current User Route
+## Step 6: Authentication Middleware and Current User Route
 After building and testing the `registerUser` and `loginUser` routes, I started working on authentication middleware and the `getCurrentUser` controller. These pieces are important because they allow the backend to verify a logged-in user before returning protected data.
 
 I used `.select('-password')` to exclude the password field from the response. Even though passwords are hashed before being stored in MongoDB, they should still never be sent back to the client. The frontend only needs safe user information like `_id`, `username`, and `email`.
@@ -977,7 +977,7 @@ app.use('/api/auth', authRoutes)
 ```
 
 
-## Backend Progress Summary
+## Step 7: Backend Progress Summary
 
 I started my capstone by building the backend first so I could create the foundation of the application before moving to the frontend. I set up the Express server, connected MongoDB, created the `User` model, built authentication controllers and routes, added authentication middleware, and tested the main auth flow end to end.
 
@@ -1081,7 +1081,7 @@ https://github.com/Sammy65433/CP-325.9-Capstone-Project/blob/main/frontend/READM
 - **try...catch**
   - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
 
-  `MDN Doc used:`
+## MDN links:
 
   - `npm init -y`
   - npm docs: `https://docs.npmjs.com/creating-a-package-json-file`
@@ -1128,4 +1128,6 @@ https://github.com/Sammy65433/CP-325.9-Capstone-Project/blob/main/frontend/READM
 
 - `process.env` in Node environment variables
   - https://nodejs.org/api/process.html#processenv
+
+
 
