@@ -666,6 +666,72 @@ For now, I am still keeping full JWT authentication on the shelf so I can priori
 - `controllers/sessionController.js`
 - `controllers/goalController.js`
 
+
+## Session and Goal Models
+
+I created two new Mongoose models for the main features of my Sports Training Tracker app:
+
+- `Session.js`
+- `Goal.js`
+
+### `Session.js`
+The `Session` model stores training session data, including:
+- `sport`
+- `drill`
+- `duration`
+- `date`
+- `notes`
+
+I chose these fields because they match the key information a user would want to log after a workout or practice session.
+
+### `Goal.js`
+The `Goal` model stores user goal data, including:
+- `goalTitle`
+- `targetValue`
+- `currentValue`
+- `deadline`
+- `status`
+
+I chose these fields because they support progress tracking and help users measure improvement over time.
+
+### Why I created these models
+I created these models because training sessions and goals are the two main features of the app. Mongoose models help define the structure of the data, validate input, and prepare the backend for CRUD operations.
+
+### Shared features
+Both models use:
+- required fields for important data
+- trimmed string values where appropriate
+- `timestamps: true` to automatically store `createdAt` and `updatedAt`
+
+### Next step
+Next, I will create the controllers and routes for sessions and goals, test them in Thunder Client, and then connect the frontend forms to the backend.
+
+
+## `sessionController.js`
+
+I created `sessionController.js` to handle the backend logic for training sessions.
+
+It currently includes:
+- `getSessions` to retrieve all training sessions from MongoDB
+- `createSession` to create and save a new training session in MongoDB
+
+### Why I created this file
+I created a controller file so the route definitions could stay clean and the session logic could be separated into dedicated functions. This follows the same backend structure I used earlier with authentication and makes the code easier to organize and debug.
+
+### What I used
+- `Session.find()` to get all session documents
+- `Session.create()` to insert a new session document
+- `try...catch` for error handling
+- validation for required fields before saving data
+
+### Debugging
+I added temporary `console.log()` statements to confirm:
+- when each controller function was hit
+- what data came in through `req.body`
+- what data was returned from MongoDB
+- whether a new session was successfully created
+
+
 ```md
 ## Docs and MDN for `GoalsPage.jsx`
 
