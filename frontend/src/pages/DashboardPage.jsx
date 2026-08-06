@@ -1,7 +1,7 @@
 import '../styles/DashboardPage.css'
 
 export default function DashboardPage() {
-    console.log('DashboardPage rendered')
+    // console.log('DashboardPage rendered')
 
     return (
         <main className="dashboard-page">

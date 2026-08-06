@@ -12,7 +12,7 @@ export default function SessionsPage() {
         date: '',
         notes: '',
     })
-  // Stores the list of training sessions shown on the page
+    // Stores the list of training sessions shown on the page
     const [sessions, setSessions] = useState([
         {
             id: 1,
@@ -32,7 +32,17 @@ export default function SessionsPage() {
         },
     ])
 
-
+    // Updates the form state whenever the user types into an input field
+    function handleChange(event) {
+        // Logs which field changed and the new value entered by the user
+        console.log('Sessions form changed:', event.target.name, event.target.value)
+        setFormData({
+            // Copies the existing form values 
+            ...formData,
+            // Updates only the input field that was changed
+            [event.target.name]: event.target.value,
+        })
+    }
 
     return (
         <main className="sessions-page">
