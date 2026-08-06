@@ -563,9 +563,42 @@ For now, I am still keeping full JWT authentication on the shelf so I can priori
 
 
 
+```md
+## Docs and MDN for `SessionsPage.jsx`
 
+- React `useState`
+  - https://react.dev/reference/react/useState
 
+- React components
+  - https://react.dev/learn/your-first-component
 
+- React conditional and list rendering
+  - https://react.dev/learn/rendering-lists
+
+- React forms
+  - https://react.dev/reference/react-dom/components/input
+
+- React `textarea`
+  - https://react.dev/reference/react-dom/components/textarea
+
+- React event handling
+  - https://react.dev/learn/responding-to-events
+
+- MDN `Array.prototype.map()`
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+
+- MDN spread syntax
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+
+- MDN computed property names
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names
+
+- MDN `Event.preventDefault()`
+  - https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+
+- MDN `Date.now()`
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now
+```
 
   `MDN Doc used:`
 
