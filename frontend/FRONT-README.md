@@ -778,6 +778,31 @@ I created this service file so the fetch logic would stay separate from the page
 I used a `BASE_URL` constant so I would not have to repeat the same backend endpoint string multiple times. This makes the code easier to update later if the API URL changes.
 ```
 
+```md
+I wrapped the session creation logic in a `try...catch` block so I could safely handle any errors during the backend request. If the request succeeds, the new session is added to the top of the sessions list and the form is reset. If something fails, the error is logged for debugging.
+```
+## `SessionsPage` Frontend-to-Backend Testing
+
+I tested the `SessionsPage` frontend connection and confirmed that existing session data was successfully fetched from MongoDB and rendered on the page. The browser console showed the fetched array, and the saved session card appeared under `Your Sessions`.
+
+I also tested submitting a new session from the `SessionsPage` form. The form data was successfully sent to the backend, the backend returned a `201 Created` response, and the new session was immediately added to the page under `Your Sessions`.
+
+### What this confirmed
+- existing session data can be fetched from MongoDB
+- the frontend can render backend data correctly
+- the session form can send new data to the backend
+- the backend can save a new session document in MongoDB
+- the frontend state updates correctly after a successful create request
+- the UI re-renders the new session without needing a page refresh
+
+
+
+
+Your next step now:
+- do the **same exact pattern for `GoalsPage`**
+- create `goalService.js`
+- connect `GET /api/goals`
+- connect `POST /api/goals`
 
 
 ```md

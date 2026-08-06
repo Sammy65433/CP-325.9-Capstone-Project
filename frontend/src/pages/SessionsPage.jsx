@@ -46,7 +46,7 @@ export default function SessionsPage() {
     }
 
     // Runs when the session form is submitted
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         // Prevents the browser from refreshing the page on form submit
         event.preventDefault()
 
