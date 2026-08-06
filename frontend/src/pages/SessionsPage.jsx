@@ -44,6 +44,36 @@ export default function SessionsPage() {
         })
     }
 
+    // Runs when the session form is submitted
+    function handleSubmit(event) {
+        // Prevents the browser from refreshing the page on form submit
+        event.preventDefault()
+
+        // Logs the full form data being submitted
+        console.log('Sessions form submitted:', formData)
+
+        // Creates a new session object using the current form values
+        const newSession = {
+            // Creates a simple unique id based on the current timestamp
+            id: Date.now(),
+
+            // Copies all form fields into the new session object
+            ...formData,
+        }
+
+        // Adds the new session to the beginning of the sessions array
+        setSessions([newSession, ...sessions])
+
+        // Clears the form after the session is added
+        setFormData({
+            sport: '',
+            drill: '',
+            duration: '',
+            date: '',
+            notes: '',
+        })
+    }
+
     return (
         <main className="sessions-page">
             {/* Page header introduces the training sessions section */}
@@ -58,7 +88,7 @@ export default function SessionsPage() {
             <section className="sessions-panel">
                 <h2>Add Training Session</h2>
                 {/* form layout and structure  */}
-                <form className='sessions-form'>
+                <form className='sessions-form' onSubmit={handleSubmit}>
                     {/* Input for sport category */}
                     <div className='form-group'>
                         <label htmlFor='sport'>Sport</label>
@@ -67,6 +97,8 @@ export default function SessionsPage() {
                             id='sport'
                             name='sport'
                             placeholder='Enter sport'
+                            value={formData.sport}
+                            onChange={handleChange}
                         />
                     </div>
 
@@ -78,6 +110,8 @@ export default function SessionsPage() {
                             id='drill'
                             name='drill'
                             placeholder='Enter workout or drill'
+                            value={formData.drill}
+                            onChange={handleChange}
                         />
                     </div>
 
@@ -89,6 +123,8 @@ export default function SessionsPage() {
                             id='duration'
                             name='duration'
                             placeholder='Example: 45mins'
+                            value={formData.duration}
+                            onChange={handleChange}
                         />
                     </div>
 
@@ -99,6 +135,8 @@ export default function SessionsPage() {
                             type='date'
                             id='date'
                             name='date'
+                            value={formData.date}
+                            onChange={handleChange}
                         />
                     </div>
 
@@ -110,6 +148,8 @@ export default function SessionsPage() {
                             name='notes'
                             rows='4'
                             placeholder='Add notes about the session'
+                            value={formData.notes}
+                            onChange={handleChange}
                         ></textarea>
                     </div>
                     <button type='submit' className='sessions-button'>
@@ -123,19 +163,16 @@ export default function SessionsPage() {
             <section className="sessions-panel">
                 <h2>Your Sessions</h2>
 
-                <div className="session-card">
-                    <h3>Basketball Shooting Workout</h3>
-                    <p><strong>Duration:</strong> 45 minutes</p>
-                    <p><strong>Date:</strong> 2026-08-05</p>
-                    <p><strong>Notes:</strong> Focused on free throws and mid-range shooting.</p>
-                </div>
 
-                <div className="session-card">
-                    <h3>Track Sprint Practice</h3>
-                    <p><strong>Duration:</strong> 30 minutes</p>
-                    <p><strong>Date:</strong> 2026-08-04</p>
-                    <p><strong>Notes:</strong> Worked on short bursts and acceleration drills.</p>
-                </div>
+                {/* Loops through the sessions array and displays each saved session */}
+                {sessions.map((session) => (
+                    <div className="session-card" key={session.id}>
+                        <h3>{session.sport} - {session.drill}</h3>
+                        <p><strong>Duration:</strong> {session.duration}</p>
+                        <p><strong>Date:</strong> {session.date}</p>
+                        <p><strong>Notes:</strong> {session.notes}</p>
+                    </div>
+                ))}
             </section>
 
         </main>
