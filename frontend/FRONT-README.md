@@ -519,13 +519,39 @@ This stage helped me practice:
 - [x] turn `GoalsPage` into a real form layout
 - [x] add dummy sessions and dummy goals
 - [ ] add real placeholder profile info if needed
-- [ ] style `Navbar`
+- [x] style `Navbar`
 - [ ] connect session and goal pages to backend
 - [ ] decide whether login/register will remain simple placeholders or basic redirect pages
 
 ### Next step
+
+## Navbar Styling Completed
+
+After building the main frontend pages, I styled the shared `Navbar` component to improve navigation and give the app a cleaner, more polished look.
+
+### What I completed
+I updated the navigation bar to include:
+- a brand title for the app
+- links to:
+  - Dashboard
+  - Sessions
+  - Goals
+  - Profile
+  - Login
+  - Register
+
+### Styling added
+I styled the navbar with:
+- a dark background
+- horizontal layout using Flexbox
+- spacing between brand and links
+- link padding and rounded corners
+- hover effects for better user interaction
+
+### Why this matters
+The navbar is important because it gives users a clear way to move through the application. It also helps satisfy the capstone requirement for navigation across multiple React pages.
+
 My next step is to:
-- style the `Navbar`
 - polish the page layouts
 - begin connecting `SessionsPage` and `GoalsPage` to the backend
 - start turning the dummy content into real dynamic data from MongoDB
