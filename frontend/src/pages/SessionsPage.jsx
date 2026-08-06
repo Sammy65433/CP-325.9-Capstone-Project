@@ -4,6 +4,36 @@ import '../styles/SessionsPage.css'
 export default function SessionsPage() {
     console.log('SessionPage rendered')
 
+    // Store the current values typed into the session form
+    const [formData, setFormData] = useState({
+        sport: '',
+        drill: '',
+        duration: '',
+        date: '',
+        notes: '',
+    })
+  // Stores the list of training sessions shown on the page
+    const [sessions, setSessions] = useState([
+        {
+            id: 1,
+            sport: 'Basketball',
+            drill: 'Shooting Workout',
+            duration: '45 minutes',
+            date: '2026-08-05',
+            notes: 'Focused on free throws and mid-range shooting.',
+        },
+        {
+            id: 2,
+            sport: 'Track',
+            drill: 'Sprint Practice',
+            duration: '30 minutes',
+            date: '2026-08-04',
+            notes: 'Worked on acceleration and short burst drills.',
+        },
+    ])
+
+
+
     return (
         <main className="sessions-page">
             {/* Page header introduces the training sessions section */}
@@ -78,7 +108,7 @@ export default function SessionsPage() {
                 </form>
             </section>
 
-{/* Fake saved  */}
+            {/* Fake saved  */}
             {/* This panel will later display the user's saved sessions */}
             <section className="sessions-panel">
                 <h2>Your Sessions</h2>
