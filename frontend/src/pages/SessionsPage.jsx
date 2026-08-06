@@ -15,22 +15,7 @@ export default function SessionsPage() {
     })
     // Stores the list of training sessions shown on the page
     const [sessions, setSessions] = useState([
-        {
-            id: 1,
-            sport: 'Basketball',
-            drill: 'Shooting Workout',
-            duration: '45 minutes',
-            date: '2026-08-05',
-            notes: 'Focused on free throws and mid-range shooting.',
-        },
-        {
-            id: 2,
-            sport: 'Track',
-            drill: 'Sprint Practice',
-            duration: '30 minutes',
-            date: '2026-08-04',
-            notes: 'Worked on acceleration and short burst drills.',
-        },
+        
     ])
 
     // Updates the form state whenever the user types into an input field
