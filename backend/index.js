@@ -29,10 +29,9 @@ app.use(cors())
 // Allows the server to read JSON data sent in request bodies
 app.use(express.json())
 
-// Mounts all auth routes under /api/auth
-// Example: /api/auth/register, /api/auth/login, /api/auth/me
-app.use('/api/auth', authRoutes)
 
+app.use('/api/sessions', sessionRoutes)
+app.use('/api/goals', goalRoutes)
 
 // Simple test route to confirm the backend server is running
 app.get('/test', (req, res) => {
@@ -41,7 +40,7 @@ app.get('/test', (req, res) => {
 
 
 app.post('/hello', (req, res) => {
-  res.json({ message: 'hello post works' })
+    res.json({ message: 'hello post works' })
 })
 
 
@@ -50,6 +49,7 @@ app.listen(port, async () => {
     console.log(`Listening on port: ${port}`)
     await connectDB()
 })
+
 
 
 
