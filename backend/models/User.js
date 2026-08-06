@@ -22,11 +22,7 @@ const userSchema = new mongoose.Schema(
             trim: true,
             lowercase: true,
         },
-        // Stores the hashed password, not the plain password
-        password: {
-            type: String,
-            required: true,
-        },
+        
 },
 
 {   

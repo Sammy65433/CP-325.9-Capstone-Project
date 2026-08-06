@@ -649,15 +649,22 @@ This step helped me understand:
 ### Next step
 ```md
 My next step is to:
-- test the sessions page
-- test the goals page
-- polish the profile page if needed
+- test the sessions page [x]
+- test the goals page [x]
+- polish the profile page if needed [x]
 - then begin connecting sessions and goals to the backend
 ```
 
 For now, I am still keeping full JWT authentication on the shelf so I can prioritize the core app functionality and meet the capstone requirements first.
 
-
+`Start building Session and Goal backend CRUD now.`
+`backend`
+- `models/Session.js`
+- `models/Goal.js`
+- `routes/sessionRoutes.js`
+- `routes/goalRoutes.js`
+- `controllers/sessionController.js`
+- `controllers/goalController.js`
 
 ```md
 ## Docs and MDN for `GoalsPage.jsx`
