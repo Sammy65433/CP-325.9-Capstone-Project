@@ -218,3 +218,119 @@ This confirmed that:
 - the backend routes and controllers are working
 - MongoDB is saving and returning the app's main data correctly
 - the dummy local-only behavior has started being replaced with real persistent data
+
+
+
+- `RegisterPage` collects:
+  - username
+  - email
+- `LoginPage` collects:
+  - email
+- on submit, redirect to `/dashboard`
+- no password
+- no JWT
+- no backend auth logic
+
+### Frontend references used for `LoginPage.jsx`
+To build the login page, I used React and React Router documentation along with MDN references for forms and event handling. The most important references were:
+- React `useState` for storing the email field
+- React Router `useNavigate` for redirecting the user to the dashboard
+- MDN `preventDefault()` for preventing the browser from refreshing on form submit
+- MDN HTML form element references for `form`, `label`, `input`, and `button`
+
+
+## Docs and MDN for `LoginPage.jsx`
+
+### React `useState`
+- https://react.dev/reference/react/useState
+
+### React Router `useNavigate`
+- https://reactrouter.com/en/main/hooks/use-navigate
+
+### React components
+- https://react.dev/learn/your-first-component
+
+### React forms and inputs
+- React input docs
+  - https://react.dev/reference/react-dom/components/input
+- React event handling
+  - https://react.dev/learn/responding-to-events
+
+### MDN `Event.preventDefault()`
+- https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+
+### MDN `import`
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+
+### MDN `export`
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
+
+### MDN `const`
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
+
+### MDN HTML form elements
+- `<form>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+- `<label>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label
+- `<input>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+- `<button>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button
+
+### MDN semantic HTML
+- `<main>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main
+- `<section>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section
+
+## Docs and MDN for `RegisterPage.jsx`
+
+### React `useState`
+- https://react.dev/reference/react/useState
+
+### React Router `useNavigate`
+- https://reactrouter.com/en/main/hooks/use-navigate
+
+### React components
+- https://react.dev/learn/your-first-component
+
+### React forms and inputs
+- React input docs
+  - https://react.dev/reference/react-dom/components/input
+- React form submit and events
+  - https://react.dev/learn/responding-to-events
+
+### MDN `Event.preventDefault()`
+- https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+
+### MDN spread syntax
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+
+### MDN computed property names
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names
+
+### MDN `import`
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+
+### MDN `export`
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
+
+### MDN `const`
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
+
+### MDN HTML form elements
+- `<form>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+- `<label>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label
+- `<input>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+- `<button>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button
+
+### MDN semantic HTML
+- `<main>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main
+- `<section>`
+  - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section
