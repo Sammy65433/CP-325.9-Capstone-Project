@@ -14,9 +14,24 @@ export default function SessionsPage() {
         notes: '',
     })
     // Stores the list of training sessions shown on the page
-    const [sessions, setSessions] = useState([
-        
-    ])
+    const [sessions, setSessions] = useState([])
+
+
+    // Loads sessions from the backend when the page first renders
+    useEffect(() => {
+        async function loadSessions() {
+            try {
+                console.log('Fetching sessions from backend')
+                const data = await getSessions()
+                console.log('Sessions fetched:', data)
+                setSessions(data)
+            } catch (error) {
+                console.log('Error loading sessions:', error.message)
+            }
+        }
+
+        loadSessions()
+    }, [])
 
     // Updates the form state whenever the user types into an input field
     function handleChange(event) {
@@ -38,28 +53,26 @@ export default function SessionsPage() {
         // Logs the full form data being submitted
         console.log('Sessions form submitted:', formData)
 
-        // Creates a new session object using the current form values
-        const newSession = {
-            // Creates a simple unique id based on the current timestamp
-            id: Date.now(),
+        try {
+            // Sends the current form data to the backend and waits for the saved session to come back
+            const newSession = await createSession(formData)
+            console.log('Session saved to backend:', newSession)
 
-            // Copies all form fields into the new session object
-            ...formData,
+            // Adds the newly saved session to the top of the sessions list in React state
+            setSessions([newSession, ...sessions])
+
+            // Clears the form fields after a successful submit
+            setFormData({
+                sport: '',
+                drill: '',
+                duration: '',
+                date: '',
+                notes: '',
+            })
+        } catch (error) {
+            console.log('Error creating session:', error.message)
         }
-
-        // Adds the new session to the beginning of the sessions array
-        setSessions([newSession, ...sessions])
-
-        // Clears the form after the session is added
-        setFormData({
-            sport: '',
-            drill: '',
-            duration: '',
-            date: '',
-            notes: '',
-        })
     }
-
     return (
         <main className="sessions-page">
             {/* Page header introduces the training sessions section */}
@@ -152,7 +165,7 @@ export default function SessionsPage() {
 
                 {/* Loops through the sessions array and displays each saved session */}
                 {sessions.map((session) => (
-                    <div className="session-card" key={session.id}>
+                    <div className="session-card" key={session._id || session.id}>
                         <h3>{session.sport} - {session.drill}</h3>
                         <p><strong>Duration:</strong> {session.duration}</p>
                         <p><strong>Date:</strong> {session.date}</p>
