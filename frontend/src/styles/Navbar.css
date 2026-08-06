@@ -1,0 +1,41 @@
+.navbar {
+    /* Creates a horizontal navigation bar with space between brand and links */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111827;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    margin: 1rem auto;
+    max-width: 1100px;
+}
+
+.navbar-brand a {
+    /* Styles the app title or brand link */
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.navbar-links {
+    /* Keeps the navigation links in a row with spacing between them */
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.navbar-links a {
+    /* Styles each navigation link */
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.navbar-links a:hover {
+    /* Adds a hover effect so links feel interactive */
+    background-color: #2563eb;
+}

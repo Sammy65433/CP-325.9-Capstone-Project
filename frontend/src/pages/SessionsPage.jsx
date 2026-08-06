@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import '../styles/SessionsPage.css'
 
 export default function SessionsPage() {
