@@ -796,11 +796,33 @@ I also tested submitting a new session from the `SessionsPage` form. The form da
 - the UI re-renders the new session without needing a page refresh
 
 
+Why you are creating this:
+- to keep `GoalsPage.jsx` cleaner
+- to separate UI logic from API request logic
+- to reuse the same goal request functions later
+- to make debugging easier
 
+Short README explanation:
+
+```md
+## `goalService.js`
+
+I created `goalService.js` to hold the frontend API request logic for goals.
+
+### Why I created this file
+I created this service file so the fetch logic would stay separate from the page component. This keeps `GoalsPage.jsx` cleaner and makes the code easier to organize, reuse, and debug.
+
+### What it does
+- `getGoals()` sends a `GET` request to retrieve all goals from the backend
+- `createGoal(goalData)` sends a `POST` request to create a new goal in the backend
+
+### Why I used `BASE_URL`
+I used a `BASE_URL` constant so I would not need to repeat the same backend endpoint string multiple times. This makes the code easier to update later if the API URL changes.
+```
 
 Your next step now:
-- do the **same exact pattern for `GoalsPage`**
-- create `goalService.js`
+- **same exact pattern for `GoalsPage`**
+- create `goalService.js` [x]
 - connect `GET /api/goals`
 - connect `POST /api/goals`
 
