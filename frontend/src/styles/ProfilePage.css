@@ -15,19 +15,19 @@
     /* Makes the main profile title larger and more prominent */
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    color: #111827;
+    color: black;
 }
 
 .profile-subtitle {
     /* Styles the smaller descriptive text under the title */
-    color: #6b7280;
+    color: gray;
     font-size: 1rem;
 }
 
 .profile-panel {
     /* Creates boxed sections for user details and future profile info */
-    background-color: #ffffff;
-    border: 1px solid #d1d5db;
+    background-color: gold;
+    border: 1px solid gold;
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -42,6 +42,7 @@
 }
 
 .profile-panel p {
-    /* Styles the placeholder text inside profile sections */
-    color: #6b7280;
+    /* Styles the information text inside each profile card */
+    margin: 0.5rem 0;
+    color: #4b5563;
 }

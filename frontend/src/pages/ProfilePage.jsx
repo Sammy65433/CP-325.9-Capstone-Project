@@ -7,9 +7,9 @@ export default function ProfilePage() {
         <main className="profile-page">
             {/* Page header introduces the user profile section */}
             <section className="profile-header">
-                <h1 className="profile-title">Profile</h1>
+                <h1 className="profile-title">Athlete Profile</h1>
                 <p className="profile-subtitle">
-                    View your account information and training focus.
+                    Review your training identity, goals, and activity summary.
                 </p>
             </section>
 

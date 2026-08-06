@@ -17,24 +17,24 @@ export default function GoalsPage() {
     })
 
     // Stores the list of saved goals shown on the page
-    const [goals, setGoals] = useState([
-        {
-            id: 1,
-            goalTitle: 'Run 5 Miles Without Stopping',
-            targetValue: '5 miles',
-            currentValue: '3 miles',
-            deadline: '2026-09-01',
-            status: 'In Progress',
-        },
-        {
-            id: 2,
-            goalTitle: 'Complete 50 Push-Ups',
-            targetValue: '50 push-ups',
-            currentValue: '35 push-ups',
-            deadline: '2026-08-20',
-            status: 'In Progress',
-        },
-    ])
+    // Stores the list of goals loaded from the backend
+    const [goals, setGoals] = useState([])
+
+    // Loads goals from the backend when the page first renders
+    useEffect(() => {
+        async function loadGoals() {
+            try {
+                console.log('Fetching goals from backend')
+                const data = await getGoals()
+                console.log('Goals fetched:', data)
+                setGoals(data)
+            } catch (error) {
+                console.log('Error loading goals:', error.message)
+            }
+        }
+
+        loadGoals()
+    }, [])
 
     // Updates the form state whenever the user types into an input or changes the dropdown
     function handleChange(event) {
@@ -49,37 +49,32 @@ export default function GoalsPage() {
             [event.target.name]: event.target.value,
         })
     }
-
+    // Sends form data to the backend and updates the page with the saved goal
     // Runs when the goal form is submitted
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         // Prevents the browser from refreshing on submit
         event.preventDefault()
 
         // Logs the full goal form data being submitted
         console.log('Goals form submitted:', formData)
 
-        // Creates a new goal object using the current form values
-        const newGoal = {
-            // Creates a simple unique id using the current timestamp
-            id: Date.now(),
+        try {
+            const newGoal = await createGoal(formData)
+            console.log('Goal saved to backend:', newGoal)
 
-            // Copies all form fields into the new goal object
-            ...formData,
+            setGoals([newGoal, ...goals])
+
+            setFormData({
+                goalTitle: '',
+                targetValue: '',
+                currentValue: '',
+                deadline: '',
+                status: '',
+            })
+        } catch (error) {
+            console.log('Error creating goal:', error.message)
         }
-
-        // Adds the new goal to the beginning of the goals array
-        setGoals([newGoal, ...goals])
-
-        // Clears the form after the new goal is added
-        setFormData({
-            goalTitle: '',
-            targetValue: '',
-            currentValue: '',
-            deadline: '',
-            status: '',
-        })
     }
-
     return (
         <main className="goals-page">
             {/* Page header introduces the goals section of the app */}
@@ -176,7 +171,7 @@ export default function GoalsPage() {
 
                 {/* Loops through the goals array and displays each saved goal */}
                 {goals.map((goal) => (
-                    <div className="goal-card" key={goal.id}>
+                    <div className="goal-card" key={goal._id || goal.id}>
                         <h3>{goal.goalTitle}</h3>
                         <p><strong>Target Value:</strong> {goal.targetValue}</p>
                         <p><strong>Current Value:</strong> {goal.currentValue}</p>

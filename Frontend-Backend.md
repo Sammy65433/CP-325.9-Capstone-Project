@@ -182,3 +182,39 @@ https://github.com/Sammy65433/CP-325.9-Capstone-Project/blob/main/backend/Backen
 
 `FRONTEND README LINK:`
 https://github.com/Sammy65433/CP-325.9-Capstone-Project/blob/main/frontend/README.md
+
+
+## Sessions and Goals Frontend-to-Backend Testing
+
+After building the session and goal forms on the frontend, I connected both pages to the backend using separate service files and tested the full flow.
+
+### Sessions testing
+I tested the sessions feature and confirmed that:
+- existing session data was successfully fetched from MongoDB
+- the session list rendered correctly on the page
+- submitting a new session from the frontend form sent the request to the backend
+- the backend created and returned the new session document
+- the new session appeared immediately on the page
+
+### Goals testing
+I tested the goals feature and confirmed that:
+- existing goal data was successfully fetched from MongoDB
+- the goals list rendered correctly on the page
+- submitting a new goal from the frontend form sent the request to the backend
+- the backend created and returned the new goal document
+- the new goal appeared immediately on the page
+
+### Backend terminal confirmation
+The backend terminal logs confirmed that:
+- `getSessions` was hit
+- `createSession` was hit
+- `getGoals` was hit
+- `createGoal` was hit
+- MongoDB returned and saved the expected documents
+
+### What this proved
+This confirmed that:
+- the frontend forms are connected to the backend
+- the backend routes and controllers are working
+- MongoDB is saving and returning the app's main data correctly
+- the dummy local-only behavior has started being replaced with real persistent data

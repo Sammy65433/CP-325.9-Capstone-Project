@@ -826,6 +826,8 @@ Your next step now:
 - connect `GET /api/goals`
 - connect `POST /api/goals`
 
+`Frontend-Backend Readme link` 
+https://github.com/Sammy65433/CP-325.9-Capstone-Project/blob/main/Frontend-Backend.md
 
 ```md
 ## Docs and MDN for `GoalsPage.jsx`
