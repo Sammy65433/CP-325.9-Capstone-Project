@@ -581,15 +581,120 @@ The goals page now includes:
   - goal title
   - target value
   - current value
+- deadline
+  - status
+- a submit button
+- a goals array stored in React state
+- local rendering of saved goal cards using `.map()`
 
+### Why I did this
+I made these pages interactive before connecting them to the backend because I wanted the application to feel more like a working product now, even before full CRUD.
+
+```md
+This helped me:
+- practice React Hooks
+- test user interaction on the frontend
+- build and verify the page flow early
+- make the app more demo-ready
+- focus on the core functionality first, as advised
+```
+
+### Why I used `useState`
+I used `useState` because the sessions and goals forms needed to:
+- keep track of what the user types
+- update that form data live
+- add newly created items to the page
+- rerender the UI when the data changes
+
+### Why I used controlled forms
+I used controlled inputs because they keep each form field synced with React state. This makes the form easier to manage and easier to connect to backend data later.
+
+### Why I used `.map()`
+I used `.map()` to loop through the `sessions` and `goals` arrays and render each saved item as its own card. This is important because later those arrays can be replaced with real data from MongoDB.
+
+### Console logs used
+I added temporary `console.log()` statements to help me confirm:
+- when the page rendered
+- when a form field changed
+- when a form was submitted
+- what data was being stored in state
+
+### Problems and troubleshooting
+While working on the frontend, I had to be careful about:
+- matching `name` attributes with the keys in `formData`
+- making sure each input used `value` and `onChange`
+- remembering to use `event.preventDefault()` so the page would not refresh on submit
+- making sure the new session or goal object had a unique `id`
+- checking that `.map()` used a proper `key`
+- watching browser console logs to confirm the forms were updating correctly
+
+### Mistakes I was trying to avoid
+Some common issues I was watching for included:
+- forgetting to spread the old `formData`
+- forgetting to reset the form after submit
+- mismatched field names
+- not using controlled inputs consistently
+- pushing static placeholder pages too long without interactivity
+
+
+### What I learned
+This step helped me understand:
+- how React state drives the UI
+- how controlled forms work
+- how to store and render local arrays
+- how `.map()` is used for dynamic list rendering
+- how to make a page interactive before backend integration
+- how frontend structure can be built gradually without blocking the rest of the app
+
+### Next step
+```md
+My next step is to:
+- test the sessions page
+- test the goals page
+- polish the profile page if needed
+- then begin connecting sessions and goals to the backend
+```
 
 For now, I am still keeping full JWT authentication on the shelf so I can prioritize the core app functionality and meet the capstone requirements first.
 
 
 
+```md
+## Docs and MDN for `GoalsPage.jsx`
 
+- React `useState`
+  - https://react.dev/reference/react/useState
 
+- React components
+  - https://react.dev/learn/your-first-component
 
+- React list rendering
+  - https://react.dev/learn/rendering-lists
+
+- React forms
+  - https://react.dev/reference/react-dom/components/input
+
+- React `select`
+  - https://react.dev/reference/react-dom/components/select
+
+- React event handling
+  - https://react.dev/learn/responding-to-events
+
+- MDN `Array.prototype.map()`
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+
+- MDN spread syntax
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+
+- MDN computed property names
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names
+
+- MDN `Event.preventDefault()`
+  - https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+
+- MDN `Date.now()`
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now
+```
 ```md
 ## Docs and MDN for `SessionsPage.jsx`
 

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import '../styles/SessionsPage.css'
 
 export default function SessionsPage() {
-    console.log('SessionPage rendered')
+    // console.log('SessionPage rendered')
 
     // Store the current values typed into the session form
     const [formData, setFormData] = useState({

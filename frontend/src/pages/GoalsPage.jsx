@@ -49,12 +49,35 @@ export default function GoalsPage() {
         })
     }
 
+    // Runs when the goal form is submitted
+    function handleSubmit(event) {
+        // Prevents the browser from refreshing on submit
+        event.preventDefault()
 
+        // Logs the full goal form data being submitted
+        console.log('Goals form submitted:', formData)
 
+        // Creates a new goal object using the current form values
+        const newGoal = {
+            // Creates a simple unique id using the current timestamp
+            id: Date.now(),
 
+            // Copies all form fields into the new goal object
+            ...formData,
+        }
 
+        // Adds the new goal to the beginning of the goals array
+        setGoals([newGoal, ...goals])
 
-
+        // Clears the form after the new goal is added
+        setFormData({
+            goalTitle: '',
+            targetValue: '',
+            currentValue: '',
+            deadline: '',
+            status: '',
+        })
+    }
 
     return (
         <main className="goals-page">
@@ -66,24 +89,26 @@ export default function GoalsPage() {
                 </p>
             </section>
 
-            {/* This panel holds the goal form users will later use to create new goals */}
+            {/* This panel holds the form for creating a new goal */}
             <section className="goals-panel">
                 <h2>Add a New Goal</h2>
 
-                {/* The form is currently for layout and structure before backend connection */}
-                <form className="goals-form">
-                    {/* Input for the title or name of the goal */}
+                {/* Controlled form stores goal input in React state */}
+                <form className="goals-form" onSubmit={handleSubmit}>
+                    {/* Input for the goal title */}
                     <div className="form-group">
                         <label htmlFor="goalTitle">Goal Title</label>
                         <input
                             type="text"
                             id="goalTitle"
                             name="goalTitle"
-                            placeholder="Enter Goal title"
+                            placeholder="Enter goal title"
+                            value={formData.goalTitle}
+                            onChange={handleChange}
                         />
                     </div>
 
-                    {/* Input for the target amount or performance goal */}
+                    {/* Input for the target value of the goal */}
                     <div className="form-group">
                         <label htmlFor="targetValue">Target Value</label>
                         <input
@@ -91,6 +116,8 @@ export default function GoalsPage() {
                             id="targetValue"
                             name="targetValue"
                             placeholder="Example: 20 push-ups or 5 miles"
+                            value={formData.targetValue}
+                            onChange={handleChange}
                         />
                     </div>
 
@@ -102,6 +129,8 @@ export default function GoalsPage() {
                             id="currentValue"
                             name="currentValue"
                             placeholder="Enter current progress"
+                            value={formData.currentValue}
+                            onChange={handleChange}
                         />
                     </div>
 
@@ -112,48 +141,49 @@ export default function GoalsPage() {
                             type="date"
                             id="deadline"
                             name="deadline"
+                            value={formData.deadline}
+                            onChange={handleChange}
                         />
                     </div>
 
-                    {/* Dropdown for the goal status */}
+                    {/* Dropdown for tracking the current status of the goal */}
                     <div className="form-group">
                         <label htmlFor="status">Status</label>
-                        <select id="status" name="status">
+                        <select
+                            id="status"
+                            name="status"
+                            value={formData.status}
+                            onChange={handleChange}
+                        >
                             <option value="">Select status</option>
-                            <option value="not-started">Not Started</option>
-                            <option value="in-progress">In Progress</option>
-                            <option value="completed">Completed</option>
+                            <option value="Not Started">Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
                         </select>
                     </div>
 
-                    {/* Submit button will later send the goal data to the backend */}
+                    {/* Submit button adds the new goal to local state */}
                     <button type="submit" className="goals-button">
                         Add Goal
                     </button>
                 </form>
             </section>
 
-            {/* This panel will later display the user's saved goals */}
+            {/* This panel displays saved goals from local state */}
             <section className="goals-panel">
                 <h2>Your Goals</h2>
 
-                <div className="goal-card">
-                    <h3>Run 5 Miles Without Stopping</h3>
-                    <p><strong>Target Value:</strong> 5 miles</p>
-                    <p><strong>Current Value:</strong> 3 miles</p>
-                    <p><strong>Deadline:</strong> 2026-09-01</p>
-                    <p><strong>Status:</strong> In Progress</p>
-                </div>
-
-                <div className="goal-card">
-                    <h3>Complete 50 Push-Ups</h3>
-                    <p><strong>Target Value:</strong> 50 push-ups</p>
-                    <p><strong>Current Value:</strong> 35 push-ups</p>
-                    <p><strong>Deadline:</strong> 2026-08-20</p>
-                    <p><strong>Status:</strong> In Progress</p>
-                </div>
+                {/* Loops through the goals array and displays each saved goal */}
+                {goals.map((goal) => (
+                    <div className="goal-card" key={goal.id}>
+                        <h3>{goal.goalTitle}</h3>
+                        <p><strong>Target Value:</strong> {goal.targetValue}</p>
+                        <p><strong>Current Value:</strong> {goal.currentValue}</p>
+                        <p><strong>Deadline:</strong> {goal.deadline}</p>
+                        <p><strong>Status:</strong> {goal.status}</p>
+                    </div>
+                ))}
             </section>
-
         </main>
     )
 }
