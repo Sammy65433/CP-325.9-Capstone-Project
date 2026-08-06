@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import '../styles/GoalsPage.css'
+import { getGoals, createGoal } from '../services/goalService.js'
 
 
 export default function GoalsPage() {
