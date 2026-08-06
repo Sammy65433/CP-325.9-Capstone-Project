@@ -556,6 +556,33 @@ My next step is to:
 - begin connecting `SessionsPage` and `GoalsPage` to the backend
 - start turning the dummy content into real dynamic data from MongoDB
 
+## Sessions and Goals Pages Progress
+
+After building the basic frontend page structure, I upgraded both the `SessionsPage` and `GoalsPage` so they became interactive instead of just static placeholders.
+
+### What I completed
+I used React `useState` to make both pages store local form data and update the page dynamically when the user submits a form.
+
+#### `SessionsPage`
+The sessions page now includes:
+- controlled input fields for:
+  - sport
+  - drill or workout name
+  - duration
+  - date
+  - notes
+- a submit button
+- a sessions array stored in React state
+- local rendering of saved session cards using `.map()`
+
+#### `GoalsPage`
+The goals page now includes:
+- controlled input fields for:
+  - goal title
+  - target value
+  - current value
+
+
 For now, I am still keeping full JWT authentication on the shelf so I can prioritize the core app functionality and meet the capstone requirements first.
 
 

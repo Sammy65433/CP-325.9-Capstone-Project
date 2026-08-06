@@ -1,7 +1,60 @@
+import { useState } from 'react'
+
 import '../styles/GoalsPage.css'
+
 
 export default function GoalsPage() {
     console.log('GoalsPage rendered')
+
+    // Stores the current values typed into the goal form
+    const [formData, setFormData] = useState({
+        goalTitle: '',
+        targetValue: '',
+        currentValue: '',
+        deadline: '',
+        status: '',
+    })
+
+    // Stores the list of saved goals shown on the page
+    const [goals, setGoals] = useState([
+        {
+            id: 1,
+            goalTitle: 'Run 5 Miles Without Stopping',
+            targetValue: '5 miles',
+            currentValue: '3 miles',
+            deadline: '2026-09-01',
+            status: 'In Progress',
+        },
+        {
+            id: 2,
+            goalTitle: 'Complete 50 Push-Ups',
+            targetValue: '50 push-ups',
+            currentValue: '35 push-ups',
+            deadline: '2026-08-20',
+            status: 'In Progress',
+        },
+    ])
+
+    // Updates the form state whenever the user types into an input or changes the dropdown
+    function handleChange(event) {
+        // Logs which goal field changed and the new value entered by the user
+        console.log('Goals form changed:', event.target.name, event.target.value)
+
+        setFormData({
+            // Copies the existing form values so the other fields are preserved
+            ...formData,
+
+            // Updates only the field that changed
+            [event.target.name]: event.target.value,
+        })
+    }
+
+
+
+
+
+
+
 
     return (
         <main className="goals-page">
