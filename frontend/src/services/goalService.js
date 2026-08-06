@@ -44,3 +44,18 @@ export async function createGoal(goalData) {
     // Returns the saved goal document back to the component
     return data
 }
+
+export async function deleteGoal(id) {
+    console.log('deleteGoal called with id:', id)
+
+    const response = await fetch(`${BASE_URL}/${id}`, {
+        method: 'DELETE',
+    })
+
+    console.log('deleteGoal response:', response)
+
+    const data = await response.json()
+    console.log('deleteGoal data:', data)
+
+    return data
+}

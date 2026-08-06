@@ -43,3 +43,17 @@ export async function createSession(sessionData) {
     // Returns the saved session document back to the component
     return data
 }
+export async function deleteSession(id) {
+    console.log('deleteSession called with id:', id)
+
+    const response = await fetch(`${BASE_URL}/${id}`, {
+        method: 'DELETE',
+    })
+
+    console.log('deleteSession response:', response)
+
+    const data = await response.json()
+    console.log('deleteSession data:', data)
+
+    return data
+}

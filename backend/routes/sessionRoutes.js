@@ -1,12 +1,10 @@
 import express from 'express'
-import { getSessions, createSession } from '../controllers/sessionController.js'
+import { getSessions, createSession, deleteSession } from '../controllers/sessionController.js'
 
 const router = express.Router()
 
-// Route to get all sessions
 router.get('/', getSessions)
-
-// Route to create a new session
 router.post('/', createSession)
+router.delete('/:id', deleteSession)
 
 export default router

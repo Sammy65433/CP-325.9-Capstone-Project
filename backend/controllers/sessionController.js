@@ -52,3 +52,23 @@ export async function createSession(req, res) {
         res.status(500).json({ message: 'Server error' })
     }
 }
+// Deletes one training session from MongoDB by id
+export async function deleteSession(req, res) {
+    try {
+        console.log('deleteSession route hit')
+        console.log('session id to delete:', req.params.id)
+
+        const deletedSession = await Session.findByIdAndDelete(req.params.id)
+        console.log('deleted session:', deletedSession)
+
+        if (!deletedSession) {
+            console.log('deleteSession failed: session not found')
+            return res.status(404).json({ message: 'Session not found' })
+        }
+
+        res.status(200).json(deletedSession)
+    } catch (error) {
+        console.log('deleteSession error:', error.message)
+        res.status(500).json({ message: 'Server error' })
+    }
+}

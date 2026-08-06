@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import '../styles/GoalsPage.css'
-import { getGoals, createGoal } from '../services/goalService.js'
+import { getGoals, createGoal, deleteGoal } from '../services/goalService.js'
 
 
 export default function GoalsPage() {
@@ -75,6 +75,17 @@ export default function GoalsPage() {
             console.log('Error creating goal:', error.message)
         }
     }
+    async function handleDelete(id) {
+        console.log('Delete goal clicked:', id)
+
+        try {
+            await deleteGoal(id)
+            setGoals(goals.filter((goal) => goal._id !== id))
+        } catch (error) {
+            console.log('Error deleting goal:', error.message)
+        }
+    }
+
     return (
         <main className="goals-page">
             {/* Page header introduces the goals section of the app */}
@@ -177,9 +188,18 @@ export default function GoalsPage() {
                         <p><strong>Current Value:</strong> {goal.currentValue}</p>
                         <p><strong>Deadline:</strong> {goal.deadline}</p>
                         <p><strong>Status:</strong> {goal.status}</p>
+
+                        <button
+                            type="button"
+                            className="goals-delete-button"
+                            onClick={() => handleDelete(goal._id)}
+                        >
+                            Delete
+                        </button>
                     </div>
                 ))}
             </section>
+
         </main>
     )
 }

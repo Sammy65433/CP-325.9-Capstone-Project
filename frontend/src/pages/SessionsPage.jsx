@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import '../styles/SessionsPage.css'
-import { getSessions, createSession } from '../services/sessionService.js'
+import { getSessions, createSession, deleteSession } from '../services/sessionService.js'
 
 export default function SessionsPage() {
     console.log('SessionPage rendered')
@@ -73,6 +73,17 @@ export default function SessionsPage() {
             console.log('Error creating session:', error.message)
         }
     }
+    async function handleDelete(id) {
+        console.log('Delete session clicked:', id)
+
+        try {
+            await deleteSession(id)
+            setSessions(sessions.filter((session) => session._id !== id))
+        } catch (error) {
+            console.log('Error deleting session:', error.message)
+        }
+    }
+
     return (
         <main className="sessions-page">
             {/* Page header introduces the training sessions section */}
@@ -162,7 +173,6 @@ export default function SessionsPage() {
             <section className="sessions-panel">
                 <h2>Your Sessions</h2>
 
-
                 {/* Loops through the sessions array and displays each saved session */}
                 {sessions.map((session) => (
                     <div className="session-card" key={session._id || session.id}>
@@ -170,9 +180,18 @@ export default function SessionsPage() {
                         <p><strong>Duration:</strong> {session.duration}</p>
                         <p><strong>Date:</strong> {session.date}</p>
                         <p><strong>Notes:</strong> {session.notes}</p>
+
+                        <button
+                            type="button"
+                            className="sessions-delete-button"
+                            onClick={() => handleDelete(session._id)}
+                        >
+                            Delete
+                        </button>
                     </div>
                 ))}
             </section>
+
 
         </main>
     )

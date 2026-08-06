@@ -238,6 +238,15 @@ To build the login page, I used React and React Router documentation along with 
 - MDN `preventDefault()` for preventing the browser from refreshing on form submit
 - MDN HTML form element references for `form`, `label`, `input`, and `button`
 
+### Frontend references used for `RegisterPage.jsx`
+To build the register page, I used React and React Router documentation along with MDN references for forms, event handling, and JavaScript object updates. The most important references were:
+- React `useState` for storing the `username` and `email` fields
+- React Router `useNavigate` for redirecting the user to the dashboard after submit
+- MDN `preventDefault()` for preventing the browser from refreshing on form submit
+- MDN spread syntax for copying the existing form data before updating one field
+- MDN computed property names for updating the correct form field dynamically with `[event.target.name]`
+- MDN HTML form element references for `form`, `label`, `input`, and `button`
+
 
 ## Docs and MDN for `LoginPage.jsx`
 

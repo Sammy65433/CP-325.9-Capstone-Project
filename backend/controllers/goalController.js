@@ -1,5 +1,3 @@
-
-
 import Goal from '../models/Goal.js'
 
 // Gets all goals from MongoDB
@@ -43,6 +41,27 @@ export async function createGoal(req, res) {
         res.status(201).json(goal)
     } catch (error) {
         console.log('createGoal error:', error.message)
+        res.status(500).json({ message: 'Server error' })
+    }
+}
+
+// Deletes one goal from MongoDB by id
+export async function deleteGoal(req, res) {
+    try {
+        console.log('deleteGoal route hit')
+        console.log('goal id to delete:', req.params.id)
+
+        const deletedGoal = await Goal.findByIdAndDelete(req.params.id)
+        console.log('deleted goal:', deletedGoal)
+
+        if (!deletedGoal) {
+            console.log('deleteGoal failed: goal not found')
+            return res.status(404).json({ message: 'Goal not found' })
+        }
+
+        res.status(200).json(deletedGoal)
+    } catch (error) {
+        console.log('deleteGoal error:', error.message)
         res.status(500).json({ message: 'Server error' })
     }
 }

@@ -121,3 +121,17 @@
     margin: 0.35rem 0;
     color: #4b5563;
 }
+
+.sessions-delete-button {
+    margin-top: 0.75rem;
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 0.9rem;
+    cursor: pointer;
+}
+
+.sessions-delete-button:hover {
+    background-color: #b91c1c;
+}
