@@ -12,8 +12,10 @@ import connectDB from './config/db.js'
 
 // Imports authentication routes like register, login, and get current user
 import authRoutes from './routes/authRoutes.js'
-console.log('authRoutes loaded')
+// console.log('authRoutes loaded')
 
+import sessionRoutes from './routes/sessionRoutes.js'
+import goalRoutes from './routes/goalRoutes.js'
 
 // Creates the Express application
 const app = express()
