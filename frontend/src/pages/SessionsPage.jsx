@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../styles/SessionsPage.css'
+import { getSessions, createSession } from '../services/sessionService.js'
 
 export default function SessionsPage() {
-    // console.log('SessionPage rendered')
+    console.log('SessionPage rendered')
 
     // Store the current values typed into the session form
     const [formData, setFormData] = useState({

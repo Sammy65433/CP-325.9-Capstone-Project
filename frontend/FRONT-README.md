@@ -760,6 +760,24 @@ These tests confirmed that:
 - session and goal documents can be created in MongoDB
 - backend controllers are connected correctly
 - the main app data flow is working before frontend integration
+```
+
+```md
+## `sessionService.js`
+
+I created `sessionService.js` to hold the frontend API request logic for training sessions.
+
+### Why I created this file
+I created this service file so the fetch logic would stay separate from the page component. This keeps `SessionsPage.jsx` cleaner and makes the code easier to organize, reuse, and debug.
+
+### What it does
+- `getSessions()` sends a `GET` request to retrieve all training sessions from the backend
+- `createSession(sessionData)` sends a `POST` request to create a new session in the backend
+
+### Why I used `BASE_URL`
+I used a `BASE_URL` constant so I would not have to repeat the same backend endpoint string multiple times. This makes the code easier to update later if the API URL changes.
+```
+
 
 
 ```md
