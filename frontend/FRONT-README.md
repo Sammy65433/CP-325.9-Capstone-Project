@@ -732,6 +732,36 @@ I added temporary `console.log()` statements to confirm:
 - whether a new session was successfully created
 
 
+## Session and Goal Route Testing
+
+After creating the `Session` and `Goal` models, controllers, and routes, I tested the new backend endpoints in Thunder Client to make sure the main app data could be created and retrieved successfully.
+
+### Session routes tested
+
+#### Get all sessions
+**Route tested:**
+```txt
+GET http://localhost:3000/api/sessions
+
+
+
+```md
+## Thunder Client CRUD Testing Completed
+
+Tested:
+- `GET http://localhost:3000/api/sessions`
+- `POST http://localhost:3000/api/sessions`
+- `GET http://localhost:3000/api/goals`
+- `POST http://localhost:3000/api/goals`
+
+These tests confirmed that:
+- session routes work
+- goal routes work
+- session and goal documents can be created in MongoDB
+- backend controllers are connected correctly
+- the main app data flow is working before frontend integration
+
+
 ```md
 ## Docs and MDN for `GoalsPage.jsx`
 
