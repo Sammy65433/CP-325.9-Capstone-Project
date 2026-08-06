@@ -248,6 +248,308 @@ To build the register page, I used React and React Router documentation along wi
 - MDN HTML form element references for `form`, `label`, `input`, and `button`
 
 
+
+
+## Delete Functionality Progress
+
+After building create and read functionality for sessions and goals, I added delete functionality so users could remove saved items directly from the app.
+
+This helped move the project closer to full CRUD behavior for the main features.
+
+---
+
+## What I completed
+
+I added delete functionality for:
+- training sessions
+- training goals
+
+This included both:
+- backend delete routes and controller logic
+- frontend delete buttons and state updates
+
+---
+
+## Backend delete work completed
+
+### Session delete
+I added a delete controller and route for sessions:
+
+- `deleteSession` in `sessionController.js`
+- `DELETE /api/sessions/:id` in `sessionRoutes.js`
+
+The controller:
+- reads the session id from `req.params.id`
+- uses `Session.findByIdAndDelete()` to remove the document from MongoDB
+- returns the deleted session if successful
+- returns a `404` response if the session does not exist
+- uses `try...catch` for error handling
+
+### Goal delete
+I added a delete controller and route for goals:
+
+- `deleteGoal` in `goalController.js`
+- `DELETE /api/goals/:id` in `goalRoutes.js`
+
+The controller:
+- reads the goal id from `req.params.id`
+- uses `Goal.findByIdAndDelete()` to remove the document from MongoDB
+- returns the deleted goal if successful
+- returns a `404` response if the goal does not exist
+- uses `try...catch` for error handling
+
+---
+
+## Frontend delete work completed
+
+### Session delete button
+I added a delete button inside each session card on the `SessionsPage`.
+
+When the button is clicked:
+- the frontend calls `deleteSession(id)` from `sessionService.js`
+- the backend receives the delete request
+- the deleted session is removed from React state using `.filter()`
+- the UI updates immediately without a page refresh
+
+### Goal delete button
+I also added a delete button inside each goal card on the `GoalsPage`.
+
+When the button is clicked:
+- the frontend calls `deleteGoal(id)` from `goalService.js`
+- the backend receives the delete request
+- the deleted goal is removed from React state using `.filter()`
+- the UI updates immediately without a page refresh
+
+---
+
+## Thunder Client delete testing
+
+I tested the backend delete routes in Thunder Client before relying on the frontend buttons.
+
+
+Short version if you need something quick:
+
+```md
+## Delete Functionality Completed
+
+I added delete functionality for both sessions and goals.
+
+### Backend
+I created:
+- `deleteSession` in `sessionController.js`
+- `deleteGoal` in `goalController.js`
+
+I also added:
+- `DELETE /api/sessions/:id`
+- `DELETE /api/goals/:id`
+
+### Frontend
+I added delete buttons to:
+- each session card
+- each goal card
+
+When a user clicks delete:
+- the frontend sends a `DELETE` request to the backend
+- MongoDB removes the document
+- React state updates with `.filter()`
+- the item disappears from the page without a refresh
+
+### Troubleshooting
+I ran into a few issues, including:
+- placing the delete button outside the `.map()` loop
+- receiving HTML instead of JSON when the backend route was missing or broken
+- import/export mismatches in backend controller files
+
+I fixed these issues by:
+- moving the delete button inside each mapped card
+- testing delete routes in Thunder Client first
+- correcting backend exports and routes
+- restarting the backend after file changes
+
+### What I learned
+This helped me understand how delete functionality works across:
+- frontend buttons
+- service files
+- Express routes
+- controllers
+- MongoDB
+- React state updates
+
+### Current progress
+Sessions and goals now support:
+- create
+- read
+- delete
+
+
+### Goal delete tested
+**Route tested:**
+```txt
+DELETE /api/goals/:id
+
+```
+- total sessions from MongoDB
+- total goals from MongoDB
+- latest activity from real session data
+- recent sessions from real backend data
+- goal progress from real backend data
+
+So the process is:
+1. import `getSessions`
+2. import `getGoals`
+3. use `useEffect`
+4. store data in `useState`
+5. render counts and recent items
+
+
+## Final Frontend and CRUD Testing Progress
+
+After building the core pages, connecting sessions and goals to the backend, and simplifying login and register, I completed another round of testing to make sure the application flow was working correctly.
+
+### Tests completed
+
+#### Sessions testing
+I tested the sessions feature and confirmed that:
+- existing session data was fetched from MongoDB and rendered on the page
+- submitting a new session from the frontend form successfully sent data to the backend
+- the backend created and returned the new session document
+- the new session appeared immediately in the UI
+- deleting a session removed it from MongoDB
+- deleting a session also removed it from the page without needing a refresh
+
+#### Goals testing
+I tested the goals feature and confirmed that:
+- existing goal data was fetched from MongoDB and rendered on the page
+- submitting a new goal from the frontend form successfully sent data to the backend
+- the backend created and returned the new goal document
+- the new goal appeared immediately in the UI
+- deleting a goal removed it from MongoDB
+- deleting a goal also removed it from the page without needing a refresh
+
+#### Dashboard testing
+I tested the dashboard and confirmed that:
+- total sessions updated from real MongoDB data
+- total goals updated from real MongoDB data
+- latest activity displayed real session information
+- recent sessions displayed real backend data
+- goal progress displayed real goal data
+
+#### Login and Register testing
+I tested the simplified login and register pages and confirmed that:
+- the login page renders correctly
+- the register page renders correctly
+- form input works on both pages
+- the login form redirects the user to the dashboard
+- the register form redirects the user to the dashboard
+
+### What this confirmed
+These tests confirmed that:
+- the frontend pages are connected properly
+- the backend sessions and goals routes are working
+- MongoDB is storing and returning the main application data
+- React state updates correctly after create and delete actions
+- the dashboard reflects real backend data
+- login and register pages work as a simple user flow without blocking the core app
+
+---
+
+## Delete Testing Summary
+
+I completed delete testing for both sessions and goals.
+
+### What I tested
+- backend delete routes in Thunder Client
+- frontend delete buttons in the browser
+
+### What delete testing confirmed
+- `DELETE /api/sessions/:id` works
+- `DELETE /api/goals/:id` works
+- the correct document id is being sent
+- MongoDB deletes the correct document
+- React state updates with `.filter()`
+- the deleted item disappears from the page immediately
+
+### Troubleshooting during delete testing
+I ran into some issues while setting up delete functionality.
+
+#### Problems I hit
+- I first placed the delete button outside the `.map()` loop instead of inside each card
+- I got a JSON parsing error:
+  - `Unexpected token '<', "<!DOCTYPE"... is not valid JSON`
+- this happened because the frontend was trying to parse an HTML error page instead of a JSON response
+- I also hit backend export/import mismatches while wiring the goal delete route
+
+#### How I fixed them
+- moved the delete button inside each mapped session and goal card
+- verified the delete routes existed in the backend
+- corrected route and controller imports/exports
+- restarted the backend after changes
+- tested delete routes in Thunder Client first before relying on the frontend
+
+---
+
+## What I learned from this round of testing
+
+This stage helped me understand:
+- how create, read, and delete flow across frontend, backend, and MongoDB
+- how React state can be updated after backend responses
+- why backend routes should be tested first in Thunder Client
+- how dashboard data can be driven by real backend data
+- how to simplify login/register without letting auth block the project
+- how important it is to focus on working core features before adding complexity
+
+---
+
+## Current milestone
+
+At this stage, the project now includes:
+
+### Frontend
+- Dashboard
+- Sessions page
+- Goals page
+- Profile page
+- Login page
+- Register page
+- Shared navbar
+- Styled layouts and forms
+
+### Backend
+- Session model, controller, and routes
+- Goal model, controller, and routes
+- MongoDB connection
+- tested CRUD endpoints for sessions and goals
+
+### Working features
+- create sessions
+- read sessions
+- delete sessions
+- create goals
+- read goals
+- delete goals
+- dashboard displays real backend data
+- simple login/register pages redirect to dashboard
+
+---
+
+## What is left
+The only page I may still polish is the `ProfilePage`.
+
+For now, it can remain a styled sample profile page because the core app features are already working.
+
+---
+
+## Next step
+My next step is to:
+- lightly polish the `ProfilePage`
+- review the full app flow one more time
+- make final README updates
+- push all final changes to GitHub
+- prepare to present the application
+
+
+
+
 ## Docs and MDN for `LoginPage.jsx`
 
 ### React `useState`

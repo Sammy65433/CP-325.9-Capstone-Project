@@ -5,7 +5,7 @@ export default function ProfilePage() {
 
     return (
         <main className="profile-page">
-            {/* Page header introduces the user profile section */}
+            {/* Profile page header */}
             <section className="profile-header">
                 <h1 className="profile-title">Athlete Profile</h1>
                 <p className="profile-subtitle">
@@ -13,7 +13,7 @@ export default function ProfilePage() {
                 </p>
             </section>
 
-            {/* This section shows sample account details for the athlete */}
+            {/* Account information section */}
             <section className="profile-panel">
                 <h2>Account Information</h2>
                 <p><strong>Name:</strong> Samuel Johnson</p>
@@ -21,7 +21,7 @@ export default function ProfilePage() {
                 <p><strong>Member Since:</strong> August 2026</p>
             </section>
 
-            {/* This section shows sample sports and training preferences */}
+            {/* Training focus section */}
             <section className="profile-panel">
                 <h2>Training Focus</h2>
                 <p><strong>Favorite Sport:</strong> Basketball</p>
@@ -29,13 +29,13 @@ export default function ProfilePage() {
                 <p><strong>Weekly Training Days:</strong> 4 days</p>
             </section>
 
+            {/* Quick stats section */}
             <section className="profile-panel">
                 <h2>Quick Stats</h2>
-                <p><strong>Total Sessions:</strong> 12</p>
-                <p><strong>Active Goals:</strong> 3</p>
-                <p><strong>Last Workout:</strong> Sprint Practice</p>
+                <p><strong>Total Sessions:</strong> 2</p>
+                <p><strong>Active Goals:</strong> 2</p>
+                <p><strong>Latest Session:</strong> Baseball - Hitting</p>
             </section>
-
         </main>
     )
 }
