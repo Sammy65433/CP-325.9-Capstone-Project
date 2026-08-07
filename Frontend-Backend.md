@@ -547,6 +547,24 @@ My next step is to:
 - push all final changes to GitHub
 - prepare to present the application
 
+## Features
+- Dashboard with real progress summary
+- Create, view, and delete training sessions
+- Create, view, and delete goals
+- Recent sessions and goal progress on dashboard
+- Profile page
+- Simple login and register redirect flow
+
+
+Final checklist:
+- [x] create one fresh session in current DB
+- [x] create one fresh goal in current DB
+- [x] confirm dashboard updates
+- [x] test login redirect
+- [x] test register redirect
+- [x] test delete buttons
+- [x] final push
+- [x] final README cleanup
 
 
 
@@ -645,3 +663,10 @@ My next step is to:
   - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main
 - `<section>`
   - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section
+
+
+
+
+
+
+
