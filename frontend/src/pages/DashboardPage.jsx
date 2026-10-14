@@ -33,6 +33,15 @@ export default function DashboardPage() {
         loadDashboardData()
     }, [])
 
+// Doesnt work
+//     const [sessions, setSessions] = useState([])
+
+// function handleDelete(id) {
+//   deleteSession(id)
+//   setSessions(sessions.filter((session) => session._id !== id))
+// }
+
+
     // Gets the most recent session from the sessions array
     const latestSession = sessions[0]
 
@@ -88,11 +97,13 @@ export default function DashboardPage() {
             <section className="dashboard-panel">
                 <h2>Goal Progress</h2>
 
+
                 {goals.length > 0 ? (
                     goals.slice(0, 3).map((goal) => (
                         <div className="dashboard-item" key={goal._id || goal.id}>
                             <p><strong>{goal.goalTitle}</strong></p>
                             <p>
+                                {/* toughest part */}
                                 {goal.currentValue} / {goal.targetValue} - {goal.status}
                             </p>
                         </div>
